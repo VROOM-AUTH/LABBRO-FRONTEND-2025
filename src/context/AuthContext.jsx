@@ -10,19 +10,30 @@ export const AuthProvider = ({ children }) => {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
 
-    const [authTokens, setAuthTokens] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? JSON.parse(localStorage.getItem("authTokens"))
-            : null
-    );
+    const [authTokens, setAuthTokens] = useState(() => {
+        const localTokens = localStorage.getItem("authTokens");
+        const sessionTokens = sessionStorage.getItem("authTokens");
+        return localTokens
+            ? JSON.parse(localTokens)
+            : sessionTokens
+            ? JSON.parse(sessionTokens)
+            : null;
+    });
 
-    const [user, setUser] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? jwtDecode(localStorage.getItem("authTokens"))
-            : null
-    );
+    const [user, setUser] = useState(() => {
+        const localTokens = localStorage.getItem("authTokens");
+        const sessionTokens = sessionStorage.getItem("authTokens");
+        const tokens = localTokens
+            ? localTokens
+            : sessionTokens
+            ? sessionTokens
+            : null;
+        return tokens ? jwtDecode(tokens) : null;
+    });
 
     const [loading, setLoading] = useState(true);
+
+    const [error, setError] = useState(null);
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -40,10 +51,18 @@ export const AuthProvider = ({ children }) => {
         if (response.status === 200) {
             setAuthTokens(data);
             setUser(jwtDecode(data.access));
-            localStorage.setItem("authTokens", JSON.stringify(data));
+
+            // If "Stay Logged In" is checked, store tokens in localStorage
+            if (e.target.stayLoggedIn.checked) {
+                localStorage.setItem("authTokens", JSON.stringify(data));
+            } else {
+                // Otherwise, store tokens in sessionStorage (session will expire when tab/browser is closed)
+                sessionStorage.setItem("authTokens", JSON.stringify(data));
+            }
+
             navigate("/");
         } else {
-            alert("Something went wrong!");
+            setError("Username or password is incorrect");
         }
     };
 
@@ -51,8 +70,10 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem("authTokens");
+        setError(null);
         navigate("/login");
     };
+
     const updateToken = async () => {
         const response = await fetch(`${apiUrl}/token/refresh/`, {
             method: "POST",
@@ -67,7 +88,13 @@ export const AuthProvider = ({ children }) => {
         if (response.status === 200) {
             setAuthTokens(data);
             setUser(jwtDecode(data.access));
-            localStorage.setItem("authTokens", JSON.stringify(data));
+
+            // Update storage based on where the token was originally saved
+            if (localStorage.getItem("authTokens")) {
+                localStorage.setItem("authTokens", JSON.stringify(data));
+            } else if (sessionStorage.getItem("authTokens")) {
+                sessionStorage.setItem("authTokens", JSON.stringify(data));
+            }
         } else {
             logoutUser();
         }
@@ -96,6 +123,7 @@ export const AuthProvider = ({ children }) => {
         authTokens: authTokens,
         loginUser: loginUser,
         logoutUser: logoutUser,
+        error: error,
     };
 
     return (
