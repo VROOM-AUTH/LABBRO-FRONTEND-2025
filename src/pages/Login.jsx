@@ -2,8 +2,36 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { FaUser, FaKey } from "react-icons/fa";
 import Countdown from "../components/Countdown";
+import axios from "axios";
+
 export default function Login() {
     const { loginUser, error } = useContext(AuthContext);
+    const [userInfo, setUserInfo] = useState(null);
+    const fetchUserInfo = async () => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/api/user-info/`,
+                {
+                    method: "GET", // or just omit this line since GET is the default
+                    credentials: "include", // This ensures cookies are included
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    "Network response was not ok " + response.statusText
+                );
+            }
+
+            const data = await response.json();
+            console.log(data); // User info
+        } catch (error) {
+            console.error("Error fetching user info:", error.message || error);
+        }
+    };
 
     return (
         <div className="flex justify-center items-center  flex-col  w-full h-full bg-gradient-to-r from-[#141414]  to-[#040018]">
@@ -48,6 +76,9 @@ export default function Login() {
                     value="Login"
                 />
             </form>
+            <div className="btn" onClick={fetchUserInfo}>
+                GET INFO
+            </div>
         </div>
     );
 }
