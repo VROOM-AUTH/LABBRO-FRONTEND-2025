@@ -1,8 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import Countdown from "../components/Countdown";
+import useAxios from "../utils/useAxios";
+
 export default function Home() {
     const { logoutUser, user } = useContext(AuthContext);
+
+    const [userData, setUserData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    let api = useAxios();
+
+    const getUserData = async () => {
+        const response = await api.get("/users/");
+        if (response.status === 200) {
+            setUserData(response.data);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        getUserData();
+    }, []);
 
     return (
         <div className="flex justify-center items-center flex-col">
@@ -12,6 +31,8 @@ export default function Home() {
                 Logout
             </button>
             <Countdown />
+            {!loading &&
+                userData.map((user) => <p key={user.id}>{user.username}</p>)}
         </div>
     );
 }

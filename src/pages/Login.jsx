@@ -30,17 +30,17 @@ export default function Login() {
                         required
                     />
                 </label>
-                <div className="form-control">
-                    <label className="label cursor-pointer">
-                        <span className="label-text">Remember me</span>
-                        <input
-                            type="checkbox"
-                            defaultChecked
-                            name="stayLoggedIn"
-                            className="checkbox"
-                        />
-                    </label>
-                </div>
+                <label className="label cursor-pointer w-3/5 flex justify-start">
+                    <span className="label-text mr-3 text-base">
+                        Remember me
+                    </span>
+                    <input
+                        type="checkbox"
+                        defaultChecked
+                        name="stayLoggedIn"
+                        className="checkbox"
+                    />
+                </label>
                 {error && <div className="text-red-500 mt-1">{error}</div>}
                 <input
                     type="submit"
