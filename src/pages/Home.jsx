@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import Countdown from "../components/Countdown";
 import useAxios from "../utils/useAxios";
+import axios from "axios";
 
 export default function Home() {
     const { logoutUser, user } = useContext(AuthContext);
@@ -11,16 +12,27 @@ export default function Home() {
 
     let api = useAxios();
 
-    const getUserData = async () => {
-        const response = await api.get("/users/");
-        if (response.status === 200) {
-            setUserData(response.data);
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
-        getUserData();
+        const controller = new AbortController();
+        api.get("/users/", { signal: controller.signal })
+            .then((response) => {
+                if (response.status === 200) {
+                    setUserData(response.data);
+                    console.log(response.data);
+                    setLoading(false);
+                }
+            })
+            .catch((error) => {
+                if (axios.isCancel(error)) {
+                    console.log("Request canceled");
+                } else {
+                    console.log(error);
+                }
+            });
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
