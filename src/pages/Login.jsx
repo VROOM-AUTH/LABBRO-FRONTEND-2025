@@ -3,8 +3,11 @@ import AuthContext from "../context/AuthContext";
 import { FaUser, FaKey } from "react-icons/fa";
 import Countdown from "../components/Countdown";
 export default function Login() {
-    const { loginUser, error } = useContext(AuthContext);
+    const { loginUser, error, logoutUser } = useContext(AuthContext);
 
+    useEffect(() => {
+        logoutUser();
+    }, []);
     return (
         <div className="flex justify-center items-center  flex-col  w-full h-full bg-gradient-to-r from-[#141414]  to-[#040018]">
             <form

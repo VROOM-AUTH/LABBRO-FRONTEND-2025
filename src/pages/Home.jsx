@@ -2,49 +2,37 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import Countdown from "../components/Countdown";
 import useAxios from "../utils/useAxios";
-import axios from "axios";
+import ProfilePictureUpdate from "../components/ProfilePictureUpdater";
+import { useNavigate } from "react-router-dom";
+import TopNavigation from "../components/TopNavigation";
+import UsersContext from "../context/UsersContext";
 
 export default function Home() {
-    const { logoutUser, user } = useContext(AuthContext);
-
-    const [userData, setUserData] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    let api = useAxios();
-
-    useEffect(() => {
-        const controller = new AbortController();
-        api.get("/users/", { signal: controller.signal })
-            .then((response) => {
-                if (response.status === 200) {
-                    setUserData(response.data);
-                    console.log(response.data);
-                    setLoading(false);
-                }
-            })
-            .catch((error) => {
-                if (axios.isCancel(error)) {
-                    console.log("Request canceled");
-                } else {
-                    console.log(error);
-                }
-            });
-
-        return () => {
-            controller.abort();
-        };
-    }, []);
+    const { user } = useContext(AuthContext);
+    const { users } = useContext(UsersContext);
 
     return (
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex justify-start items-center flex-col w-full h-full">
+            <TopNavigation />
             <h1>Home Page</h1>
             <h2>Welcome {user.username}</h2>
-            <button className="btn btn-outline" onClick={logoutUser}>
-                Logout
-            </button>
+
             <Countdown />
-            {!loading &&
-                userData.map((user) => <p key={user.id}>{user.username}</p>)}
+            <div className="flex flex-col justify-evenly  items-start w-28">
+                {users &&
+                    users.map((user) => (
+                        <div
+                            className="flex justify-start items-center h-16"
+                            key={user.id}
+                        >
+                            <img
+                                src={user.image}
+                                className="w-14 h-14 mr-4 rounded-full"
+                            ></img>
+                            <p>{user.username}</p>
+                        </div>
+                    ))}
+            </div>
         </div>
     );
 }

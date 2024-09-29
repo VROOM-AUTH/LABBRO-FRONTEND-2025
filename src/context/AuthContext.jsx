@@ -1,7 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -69,12 +68,33 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logoutUser = () => {
-        setAuthTokens(null);
-        setUser(null);
-        localStorage.removeItem("authTokens");
-        sessionStorage.removeItem("authTokens");
-        setError(null);
-        navigate("/login");
+        if (authTokens) {
+            fetch(`${baseURL}/logout/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authTokens?.access}`,
+                },
+                body: JSON.stringify({
+                    refresh: authTokens?.refresh,
+                }),
+            })
+                .then(() => {
+                    // Clear tokens and user;
+
+                    setAuthTokens(null);
+                    setUser(null);
+
+                    // Clear tokens from both localStorage and sessionStorage
+                    localStorage.removeItem("authTokens");
+                    sessionStorage.removeItem("authTokens");
+
+                    setError(null);
+                })
+                .finally(() => {
+                    navigate("/login");
+                });
+        }
     };
 
     let contextData = {
