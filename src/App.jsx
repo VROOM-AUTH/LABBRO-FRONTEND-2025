@@ -7,6 +7,10 @@ import { AuthProvider } from "./context/AuthContext";
 import Profile from "./pages/Profile";
 import TopNavigation from "./components/TopNavigation";
 import { UsersProvider } from "./context/UsersContext";
+import Vroomvolts from "./pages/Vroomvolts";
+import Users from "./pages/Users";
+import SmartLab from "./pages/SmartLab";
+import Marathon from "./pages/Marathon";
 
 function App() {
     return (
@@ -20,6 +24,26 @@ function App() {
                         <Route element={<PrivateRoutes />}>
                             <Route element={<UsersProvider />}>
                                 <Route path="/" element={<Home />} exact />
+                                <Route
+                                    path="/vroomvolts"
+                                    element={<Vroomvolts />}
+                                    exact
+                                />
+                                <Route
+                                    path="/users"
+                                    element={<Users />}
+                                    exact
+                                />
+                                <Route
+                                    path="/smartlab"
+                                    element={<SmartLab />}
+                                    exact
+                                />
+                                <Route
+                                    path="/marathon"
+                                    element={<Marathon />}
+                                    exact
+                                />
                                 <Route
                                     path="/profile"
                                     element={<Profile />}

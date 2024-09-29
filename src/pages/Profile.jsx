@@ -4,11 +4,13 @@ import useAxios from "../utils/useAxios";
 import AuthContext from "../context/AuthContext";
 import TopNavigation from "../components/TopNavigation";
 import UsersContext from "../context/UsersContext";
+import secondsFormat from "../utils/secondsFormat";
 export default function Profile() {
     const { users } = useContext(UsersContext);
     const { user } = useContext(AuthContext);
     const loggedInUser = users.find((u) => u.id === user.user_id);
 
+    console.log(loggedInUser);
     return (
         <div className="flex flex-col justify-start items-center w-full h-full">
             <TopNavigation />
@@ -21,6 +23,7 @@ export default function Profile() {
                     className="w-32 h-32 rounded-full"
                 />
                 <h2 className="text-2xl">@{loggedInUser?.username}</h2>
+                <p>Total time: {secondsFormat(loggedInUser?.total_time)}</p>
             </div>
             <ProfilePictureUpdate />
         </div>

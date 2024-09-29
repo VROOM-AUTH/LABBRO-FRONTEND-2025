@@ -4,7 +4,25 @@ import AuthContext from "../context/AuthContext";
 export default function TopNavigation() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [active, setActive] = useState("Home");
+    const getInitialActiveState = (pathname) => {
+        switch (pathname) {
+            case "/vroomvolts":
+                return "Vroomvolts";
+            case "/users":
+                return "Users";
+            case "/smartlab":
+                return "SmartLab";
+            case "/marathon":
+                return "Marathon";
+            case "/profile":
+                return "Profile";
+            default:
+                return "Home";
+        }
+    };
+    const [active, setActive] = useState(
+        getInitialActiveState(location.pathname)
+    );
     const { logoutUser } = useContext(AuthContext);
 
     useEffect(() => {
@@ -35,13 +53,16 @@ export default function TopNavigation() {
     // Function to determine the class name based on active state
     const getClassName = (item) => {
         return active === item
-            ? "text-white hover:text-purple-300 cursor-pointer text-xl font-bold text-purple-600"
-            : "text-white hover:text-purple-300 cursor-pointer text-xl";
+            ? "text-white hover:text-purple-300 cursor-pointer text-xl text-[#fff] bg-[#560bad] h-full flex justify-center items-center px-3 transition-all"
+            : "text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all ";
     };
 
     return (
-        <div className="w-2/5 h-12 bg-slate-800  rounded-3xl flex justify-evenly items-center">
-            <h1 className={getClassName("Home")} onClick={() => navigate("/")}>
+        <div className="w-fit h-10 mt-4 bg-[#7b2cbf]  rounded-xl flex justify-evenly items-center">
+            <h1
+                className={getClassName("Home") + " rounded-l-xl"}
+                onClick={() => navigate("/")}
+            >
                 Home
             </h1>
             <h1
@@ -69,17 +90,17 @@ export default function TopNavigation() {
                 Marathon
             </h1>
             <h1
-                className={getClassName("Profile")}
+                className={getClassName("Profile") + " rounded-r-xl"}
                 onClick={() => navigate("/profile")}
             >
                 Profile
             </h1>
-            <h1
-                className="text-white hover:text-purple-300 cursor-pointer text-xl"
+            {/* <h1
+                className="text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all border-l "
                 onClick={logoutUser}
             >
                 Logout
-            </h1>
+            </h1> */}
         </div>
     );
 }

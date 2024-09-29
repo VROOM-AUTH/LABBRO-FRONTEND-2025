@@ -6,6 +6,7 @@ import ProfilePictureUpdate from "../components/ProfilePictureUpdater";
 import { useNavigate } from "react-router-dom";
 import TopNavigation from "../components/TopNavigation";
 import UsersContext from "../context/UsersContext";
+import LabStatusCard from "../components/LabStatusCard";
 
 export default function Home() {
     const { user } = useContext(AuthContext);
@@ -33,6 +34,7 @@ export default function Home() {
                         </div>
                     ))}
             </div>
+            <LabStatusCard />
         </div>
     );
 }
