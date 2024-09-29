@@ -1,23 +1,15 @@
 function secondsFormat(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
+    const roundedSeconds = Math.round(seconds); // Round the total seconds
+    const hours = Math.floor(roundedSeconds / 3600);
+    const minutes = Math.floor((roundedSeconds % 3600) / 60);
+    const remainingSeconds = roundedSeconds % 60;
 
-    const timeParts = [];
+    // Format as hh:mm:ss
+    const hoursStr = `${hours.toString().padStart(2, "0")}h`;
+    const minutesStr = `${minutes.toString().padStart(2, "0")}m`;
+    const secondsStr = `${remainingSeconds.toString().padStart(2, "0")}s`;
 
-    if (hours > 0) {
-        timeParts.push(`${hours} hour${hours !== 1 ? "s" : ""}`);
-    }
-    if (minutes > 0) {
-        timeParts.push(`${minutes} minute${minutes !== 1 ? "s" : ""}`);
-    }
-    if (remainingSeconds > 0) {
-        timeParts.push(
-            `${remainingSeconds} second${remainingSeconds !== 1 ? "s" : ""}`
-        );
-    }
-
-    return timeParts.join(" and ");
+    return `${hoursStr} ${minutesStr}`;
 }
 
 export default secondsFormat;

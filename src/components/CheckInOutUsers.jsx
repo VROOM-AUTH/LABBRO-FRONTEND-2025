@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
 export default function CheckInOutUsers() {
     const [users, setUsers] = useState(null);
-    const [latestSession, setLatestSession] = useState(null);
+    const [currentMembers, setCurrentMembers] = useState(null);
     const [triggerUpdate, setTriggerUpdate] = useState(false);
     const api = useAxios();
 
@@ -13,22 +13,17 @@ export default function CheckInOutUsers() {
             }
         });
 
-        api.get("/labsessions/latest").then((response) => {
+        api.get("/labstatus/latest").then((response) => {
             if (response.data) {
-                setLatestSession(response.data);
+                setCurrentMembers(response.data.currentMembers);
             }
         });
     }, [triggerUpdate]);
 
     const getUserStatus = (user) => {
         let status = false;
-        if (latestSession) {
-            latestSession.forEach((session) => {
-                console.log(session);
-                if (session.user === user.id) {
-                    status = session.status;
-                }
-            });
+        if (currentMembers) {
+            status = currentMembers.includes(user.username);
         }
         return status;
     };

@@ -25,7 +25,7 @@ export default function TopNavigation() {
     const [active, setActive] = useState(
         getInitialActiveState(location.pathname)
     );
-    const { user } = useContext(AuthContext);
+    const { user, logoutUser } = useContext(AuthContext);
 
     useEffect(() => {
         switch (location.pathname) {
@@ -63,7 +63,7 @@ export default function TopNavigation() {
     };
 
     return (
-        <div className="w-fit h-10 mt-4 bg-[#7b2cbf]  rounded-xl flex justify-evenly items-center">
+        <div className="w-fit h-10 mt-4 bg-[#7b2cbf]  rounded-xl flex justify-evenly items-center absolute top-1">
             <h1
                 className={getClassName("Home") + " rounded-l-xl"}
                 onClick={() => navigate("/")}
@@ -104,17 +104,17 @@ export default function TopNavigation() {
             )}
 
             <h1
-                className={getClassName("Profile") + " rounded-r-xl"}
+                className={getClassName("Profile")}
                 onClick={() => navigate("/profile")}
             >
                 Profile
             </h1>
-            {/* <h1
-                className="text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all border-l "
+            <h1
+                className="text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all border-l-2 border-purple-500  "
                 onClick={logoutUser}
             >
                 Logout
-            </h1> */}
+            </h1>
         </div>
     );
 }
