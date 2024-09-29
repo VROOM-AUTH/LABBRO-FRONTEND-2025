@@ -22,6 +22,7 @@ function App() {
 
                         {/* All other routes will have UsersProvider */}
                         <Route element={<PrivateRoutes />}>
+                            {/* Private routes only for logged in users */}
                             <Route path="/" element={<Home />} exact />
                             <Route
                                 path="/vroomvolts"
@@ -45,6 +46,7 @@ function App() {
                                 exact
                             />
                             <Route element={<StaffRoutes />}>
+                                {/* Staff routes only for is_staff users */}
                                 <Route
                                     path="/admin"
                                     element={<Admin />}

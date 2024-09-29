@@ -1,19 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/AuthContext";
-import Countdown from "../components/Countdown";
+import React, { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
 import TopNavigation from "../components/TopNavigation";
 import LabStatusCard from "../components/LabStatusCard";
 import UserStatusCard from "../components/UserStatusCard";
+import UserBarChart from "../components/UserBarChart";
+import UserList from "../components/UserList";
 
 export default function Home() {
     const api = useAxios();
-    const { user, logoutUser } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
     const [labStatus, setLabStatus] = useState({});
     const [totalLabTime, setTotalLabTime] = useState(0);
     const [vroomvolts, setVroomvolts] = useState({});
     const [labSessions, setLabSessions] = useState([]);
+
+    // Keep only the username and total_time fields and sort in descending order
+    const graphData = users
+        ?.map(({ username, total_time }) => ({
+            username,
+            total_time,
+        }))
+        .sort((a, b) => b.total_time - a.total_time);
     useEffect(() => {
         api.get("/users").then((response) => {
             if (response.data) {
@@ -44,33 +51,23 @@ export default function Home() {
     return (
         <div className="flex justify-center items-center flex-col w-full h-full">
             <TopNavigation />
-
-            {/* <div className="flex flex-col justify-evenly  items-start w-28">
-                {users &&
-                    users.map((user) => (
-                        <div
-                            className="flex justify-start items-center h-16"
-                            key={user.id}
-                        >
-                            <img
-                                src={user.image}
-                                className="w-14 h-14 mr-4 rounded-full"
-                            ></img>
-                            <p>{user.username}</p>
-                        </div>
-                    ))}
-            </div> */}
-            <UserStatusCard
-                users={users}
-                vroomvolts={vroomvolts}
-                labSessions={labSessions}
-                labStatus={labStatus}
-            />
-            <LabStatusCard
-                users={users}
-                labStatus={labStatus}
-                totalLabTime={totalLabTime}
-            />
+            <div className="flex justify-evenly items-start w-3/4 ">
+                <UserStatusCard
+                    users={users}
+                    vroomvolts={vroomvolts}
+                    labSessions={labSessions}
+                    labStatus={labStatus}
+                />
+                <LabStatusCard
+                    users={users}
+                    labStatus={labStatus}
+                    totalLabTime={totalLabTime}
+                />
+                <UserList users={users} />
+            </div>
+            <div className="flex justify-center items-center w-1/3 h-96 ">
+                <UserBarChart data={graphData} />
+            </div>
         </div>
     );
 }

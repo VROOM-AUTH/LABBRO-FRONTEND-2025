@@ -17,7 +17,7 @@ export default function UserStatusCard({
     const name = users.filter((u) => user.user_id === u.id)[0]?.first_name;
     const image = users.filter((u) => user.user_id === u.id)[0]?.image;
     const myVroomvolts = Array.isArray(vroomvolts)
-        ? vroomvolts.filter((v) => user.user_id === v.user)[0].value
+        ? vroomvolts.filter((v) => user.user_id === v.user)[0]?.value
         : null;
 
     const myTime = users.filter((u) => user.user_id === u.id)[0]?.total_time;

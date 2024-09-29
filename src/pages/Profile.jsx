@@ -17,7 +17,6 @@ export default function Profile() {
     const { user } = useContext(AuthContext);
     const loggedInUser = users.find((u) => u.id === user.user_id);
 
-    console.log(loggedInUser);
     return (
         <div className="flex flex-col justify-start items-center w-full h-full">
             <TopNavigation />

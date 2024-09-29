@@ -1,8 +1,9 @@
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import formatDate from "../utils/dateFormat";
 import secondsFormat from "../utils/secondsFormat";
 
 export default function LabStatusCard({ users, labStatus, totalLabTime }) {
+    // Filter users that are in the lab
     const usersInLab = users?.filter((user) =>
         labStatus?.currentMembers?.includes(user.username)
     );

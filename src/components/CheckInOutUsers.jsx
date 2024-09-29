@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
 export default function CheckInOutUsers() {
     const [users, setUsers] = useState(null);
@@ -39,7 +39,7 @@ export default function CheckInOutUsers() {
     };
 
     return (
-        <div className="flex justify-center items-center flex-col w-2/12 h-3/6 bg-[#201338] rounded-xl">
+        <div className="flex justify-center items-center flex-col w-2/12 h-min min-h-3/6 bg-[#201338] rounded-xl">
             <h2 className="text-xl">Check In/Out Users</h2>
             <div className="flex flex-col justify-evenly  items-start w-2/3">
                 {users &&

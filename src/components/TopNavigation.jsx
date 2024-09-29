@@ -4,6 +4,8 @@ import AuthContext from "../context/AuthContext";
 export default function TopNavigation() {
     const location = useLocation();
     const navigate = useNavigate();
+
+    // Function to determine the initial active state based on location.pathname
     const getInitialActiveState = (pathname) => {
         switch (pathname) {
             case "/vroomvolts":
@@ -27,6 +29,7 @@ export default function TopNavigation() {
     );
     const { user, logoutUser } = useContext(AuthContext);
 
+    // Update active state based on location.pathname on first render
     useEffect(() => {
         switch (location.pathname) {
             case "/":

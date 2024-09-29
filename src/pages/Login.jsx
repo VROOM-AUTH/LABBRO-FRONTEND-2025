@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { FaUser, FaKey } from "react-icons/fa";
-import Countdown from "../components/Countdown";
 export default function Login() {
     const { loginUser, error, logoutUser } = useContext(AuthContext);
 

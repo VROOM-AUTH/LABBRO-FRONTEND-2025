@@ -7,7 +7,7 @@ function secondsFormat(seconds) {
     // Format as hh:mm:ss
     const hoursStr = `${hours.toString().padStart(2, "0")}h`;
     const minutesStr = `${minutes.toString().padStart(2, "0")}m`;
-    const secondsStr = `${remainingSeconds.toString().padStart(2, "0")}s`;
+    // const secondsStr = `${remainingSeconds.toString().padStart(2, "0")}s`;
 
     return `${hoursStr} ${minutesStr}`;
 }

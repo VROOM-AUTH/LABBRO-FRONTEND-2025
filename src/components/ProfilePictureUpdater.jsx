@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useAxios from "../utils/useAxios";
-import axios from "axios";
 
 const ProfilePictureUpdate = () => {
     const [selectedFile, setSelectedFile] = useState(null);

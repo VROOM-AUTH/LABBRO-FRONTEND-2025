@@ -4,19 +4,31 @@ import { MdNumbers } from "react-icons/md";
 import useAxios from "../utils/useAxios";
 export default function RegisterUser() {
     const api = useAxios();
-    const [response, setResponse] = useState(null);
+
+    // Message to display after a user is created
+    const [responseMessage, setResponseMessage] = useState(null);
+
     const registerUser = async (e) => {
         e.preventDefault();
-        const response = await api.post("/register/", {
-            username: e.target.username.value,
-            first_name: e.target.firstName.value,
-            last_name: e.target.lastName.value,
-            password: e.target.password.value,
-            rfid_uid: e.target.rfid.value,
-            discord_id: e.target.discord.value,
-            is_staff: e.target.isStaff.checked,
-        });
-        setResponse(response.data);
+        const response = await api
+            .post("/register/", {
+                username: e.target.username.value,
+                first_name: e.target.firstName.value,
+                last_name: e.target.lastName.value,
+                password: e.target.password.value,
+                rfid_uid: e.target.rfid.value,
+                discord_id: e.target.discord.value,
+                is_staff: e.target.isStaff.checked,
+            })
+            .then((response) => {
+                if (response.status === 201) {
+                    setResponseMessage("User created successfully");
+                }
+            })
+            .catch((error) => {
+                setResponseMessage("Something went wrong! Try again!");
+                console.log(error);
+            });
     };
     return (
         <form
@@ -79,6 +91,7 @@ export default function RegisterUser() {
                 <input type="checkbox" name="isStaff" placeholder="Is Staff" />
             </label>
             <button type="submit">Create User</button>
+            <h2>{responseMessage}</h2>
         </form>
     );
 }
