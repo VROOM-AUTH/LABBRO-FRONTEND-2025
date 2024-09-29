@@ -32,7 +32,7 @@ export default function UserBarChart({ data }) {
     };
 
     //custom tooltip to show hours and minutes instead of seconds
-    const CustomTooltip = ({ active, payload, label }) => {
+    const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
                 <div className="bg-[#e3f4f2] w-24 h-12 rounded-xl flex justify-center items-center flex-col">

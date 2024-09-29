@@ -10,16 +10,15 @@ export default function RegisterUser() {
 
     const registerUser = async (e) => {
         e.preventDefault();
-        const response = await api
-            .post("/register/", {
-                username: e.target.username.value,
-                first_name: e.target.firstName.value,
-                last_name: e.target.lastName.value,
-                password: e.target.password.value,
-                rfid_uid: e.target.rfid.value,
-                discord_id: e.target.discord.value,
-                is_staff: e.target.isStaff.checked,
-            })
+        api.post("/register/", {
+            username: e.target.username.value,
+            first_name: e.target.firstName.value,
+            last_name: e.target.lastName.value,
+            password: e.target.password.value,
+            rfid_uid: e.target.rfid.value,
+            discord_id: e.target.discord.value,
+            is_staff: e.target.isStaff.checked,
+        })
             .then((response) => {
                 if (response.status === 201) {
                     setResponseMessage("User created successfully");
