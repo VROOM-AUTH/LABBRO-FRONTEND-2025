@@ -3,10 +3,17 @@ import ProfilePictureUpdate from "../components/ProfilePictureUpdater";
 import useAxios from "../utils/useAxios";
 import AuthContext from "../context/AuthContext";
 import TopNavigation from "../components/TopNavigation";
-import UsersContext from "../context/UsersContext";
 import secondsFormat from "../utils/secondsFormat";
 export default function Profile() {
-    const { users } = useContext(UsersContext);
+    const api = useAxios();
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        api.get("/users").then((response) => {
+            if (response.data) {
+                setUsers(response.data);
+            }
+        });
+    }, []);
     const { user } = useContext(AuthContext);
     const loggedInUser = users.find((u) => u.id === user.user_id);
 

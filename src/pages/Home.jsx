@@ -2,22 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import Countdown from "../components/Countdown";
 import useAxios from "../utils/useAxios";
-import ProfilePictureUpdate from "../components/ProfilePictureUpdater";
-import { useNavigate } from "react-router-dom";
 import TopNavigation from "../components/TopNavigation";
-import UsersContext from "../context/UsersContext";
 import LabStatusCard from "../components/LabStatusCard";
 
 export default function Home() {
-    const { user } = useContext(AuthContext);
-    const { users } = useContext(UsersContext);
-
+    const api = useAxios();
+    const { user, logoutUser } = useContext(AuthContext);
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        api.get("/users").then((response) => {
+            if (response.data) {
+                setUsers(response.data);
+            }
+        });
+    }, []);
     return (
         <div className="flex justify-start items-center flex-col w-full h-full">
             <TopNavigation />
             <h1>Home Page</h1>
             <h2>Welcome {user.username}</h2>
-
+            <button onClick={logoutUser}>Logout</button>
             <Countdown />
             <div className="flex flex-col justify-evenly  items-start w-28">
                 {users &&
@@ -34,7 +38,7 @@ export default function Home() {
                         </div>
                     ))}
             </div>
-            <LabStatusCard />
+            <LabStatusCard users={users} />
         </div>
     );
 }

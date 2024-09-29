@@ -16,6 +16,8 @@ export default function TopNavigation() {
                 return "Marathon";
             case "/profile":
                 return "Profile";
+            case "/admin":
+                return "Admin";
             default:
                 return "Home";
         }
@@ -23,7 +25,7 @@ export default function TopNavigation() {
     const [active, setActive] = useState(
         getInitialActiveState(location.pathname)
     );
-    const { logoutUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         switch (location.pathname) {
@@ -44,6 +46,9 @@ export default function TopNavigation() {
                 break;
             case "/profile":
                 setActive("Profile");
+                break;
+            case "/admin":
+                setActive("Admin");
                 break;
             default:
                 setActive("Home");
@@ -89,6 +94,15 @@ export default function TopNavigation() {
             >
                 Marathon
             </h1>
+            {user.is_staff && (
+                <h1
+                    className={getClassName("Admin")}
+                    onClick={() => navigate("/admin")}
+                >
+                    Admin
+                </h1>
+            )}
+
             <h1
                 className={getClassName("Profile") + " rounded-r-xl"}
                 onClick={() => navigate("/profile")}

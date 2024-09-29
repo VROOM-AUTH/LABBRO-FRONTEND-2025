@@ -1,11 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import useAxios from "../utils/useAxios";
-import UsersContext from "../context/UsersContext";
 import formatDate from "../utils/dateFormat";
 
-export default function LabStatusCard() {
+export default function LabStatusCard({ users }) {
     const api = useAxios();
-    const { users } = useContext(UsersContext);
     const [labStatus, setLabStatus] = useState({});
     useEffect(() => {
         api.get("/labstatus/latest").then((response) => {
@@ -15,7 +13,7 @@ export default function LabStatusCard() {
         });
     }, []);
 
-    const usersInLab = users.filter((user) =>
+    const usersInLab = users?.filter((user) =>
         labStatus?.currentMembers?.includes(user.username)
     );
     return (

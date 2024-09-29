@@ -5,12 +5,12 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import { AuthProvider } from "./context/AuthContext";
 import Profile from "./pages/Profile";
-import TopNavigation from "./components/TopNavigation";
-import { UsersProvider } from "./context/UsersContext";
+import StaffRoutes from "./utils/StaffRoutes";
 import Vroomvolts from "./pages/Vroomvolts";
 import Users from "./pages/Users";
 import SmartLab from "./pages/SmartLab";
 import Marathon from "./pages/Marathon";
+import Admin from "./pages/Admin";
 
 function App() {
     return (
@@ -22,31 +22,32 @@ function App() {
 
                         {/* All other routes will have UsersProvider */}
                         <Route element={<PrivateRoutes />}>
-                            <Route element={<UsersProvider />}>
-                                <Route path="/" element={<Home />} exact />
+                            <Route path="/" element={<Home />} exact />
+                            <Route
+                                path="/vroomvolts"
+                                element={<Vroomvolts />}
+                                exact
+                            />
+                            <Route path="/users" element={<Users />} exact />
+                            <Route
+                                path="/smartlab"
+                                element={<SmartLab />}
+                                exact
+                            />
+                            <Route
+                                path="/marathon"
+                                element={<Marathon />}
+                                exact
+                            />
+                            <Route
+                                path="/profile"
+                                element={<Profile />}
+                                exact
+                            />
+                            <Route element={<StaffRoutes />}>
                                 <Route
-                                    path="/vroomvolts"
-                                    element={<Vroomvolts />}
-                                    exact
-                                />
-                                <Route
-                                    path="/users"
-                                    element={<Users />}
-                                    exact
-                                />
-                                <Route
-                                    path="/smartlab"
-                                    element={<SmartLab />}
-                                    exact
-                                />
-                                <Route
-                                    path="/marathon"
-                                    element={<Marathon />}
-                                    exact
-                                />
-                                <Route
-                                    path="/profile"
-                                    element={<Profile />}
+                                    path="/admin"
+                                    element={<Admin />}
                                     exact
                                 />
                             </Route>
