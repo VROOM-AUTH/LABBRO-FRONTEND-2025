@@ -10,7 +10,7 @@ export default function UserList({ users }) {
                         key={user.id}
                         className="m-2 flex justify-center items-center flex-col w-min min-w-16"
                     >
-                        <div class="w-14 h-14 rounded-full overflow-hidden">
+                        <div className="w-14 h-14 rounded-full overflow-hidden">
                             <img
                                 src={user.image}
                                 className="w-14 h-14 mr-4 rounded-full object-cover"

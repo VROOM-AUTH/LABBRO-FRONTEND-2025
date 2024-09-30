@@ -12,7 +12,6 @@ import {
 } from "recharts";
 
 export default function UserBarChart({ data }) {
-    console.log(data);
     //custom y axis to show hours and minutes instead of seconds
     const CustomYAxisTick = ({ x, y, payload }) => {
         return (

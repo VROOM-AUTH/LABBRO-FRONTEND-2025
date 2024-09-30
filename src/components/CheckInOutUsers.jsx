@@ -32,7 +32,7 @@ export default function CheckInOutUsers() {
         const status = getUserStatus(user);
         api.post("/labsessions/", {
             user: user.id,
-            status: !status,
+            // status: !status,
         }).then(() => {
             setTriggerUpdate((prev) => !prev); // Toggle triggerUpdate to refresh data
         });

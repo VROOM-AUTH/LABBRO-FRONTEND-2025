@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLock, FaUser } from "react-icons/fa";
 import { MdNumbers } from "react-icons/md";
 import useAxios from "../utils/useAxios";
 export default function RegisterUser() {
     const api = useAxios();
+    const [rfids, setRfids] = useState([]);
+    useEffect(() => {
+        api.get("/rfids/").then((response) => {
+            if (response.status === 200) {
+                setRfids(response.data);
+            }
+        });
+    }, []);
 
     // Message to display after a user is created
     const [responseMessage, setResponseMessage] = useState(null);
@@ -73,7 +81,14 @@ export default function RegisterUser() {
             </label>
             <label className="input input-bordered flex items-center gap-2 m-1">
                 <MdNumbers />
-                <input type="text" name="rfid" placeholder="RFID" required />
+                <select id="rfidDropdown" name="rfid">
+                    {rfids?.map((item) => (
+                        <option key={item.rfid_uid} value={item.rfid_uid}>
+                            {item.rfid_uid}
+                        </option>
+                    ))}
+                </select>
+                {/* <input type="text"  placeholder="RFID" required /> */}
             </label>
             <label className="input input-bordered flex items-center gap-2 m-1">
                 <MdNumbers />
