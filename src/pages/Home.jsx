@@ -64,9 +64,9 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="flex justify-evenly items-center w-full h-full">
+        <div className="flex justify-evenly items-center w-full h-full md:flex-col md:justify-center">
             <TopNavigation />
-            <div className="flex flex-col">
+            <div className="flex flex-col md:justify-center md:items-center md:w-full">
                 <UserStatusCard
                     users={users}
                     vroomvolts={vroomvolts}
@@ -79,13 +79,13 @@ export default function Home() {
                     totalLabTime={totalLabTime}
                 />
             </div>
-            <div className="flex flex-col justify-center items-center w-2/5">
-                <div className="flex justify-between items-center w-full">
+            <div className="flex flex-col justify-center items-center w-2/5 md:w-full">
+                <div className="flex justify-between items-center w-full md:flex-col md:justify-center md:w-11/12">
                     <UserList users={users} />
                     <LabTimeGraph labDurations={labDurations} />
                 </div>
 
-                <div className="flex justify-center items-center h-96 w-full">
+                <div className="flex justify-center items-center h-96 w-full md:w-11/12">
                     <UserBarChart data={graphData} />
                 </div>
             </div>
