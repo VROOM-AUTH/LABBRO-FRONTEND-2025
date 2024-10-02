@@ -27,7 +27,7 @@ export default function TopNavigation() {
     const [active, setActive] = useState(
         getInitialActiveState(location.pathname)
     );
-    const { user, logoutUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     // Update active state based on location.pathname on first render
     useEffect(() => {
@@ -57,16 +57,14 @@ export default function TopNavigation() {
                 setActive("Home");
         }
     }, [location.pathname]);
-
     // Function to determine the class name based on active state
     const getClassName = (item) => {
         return active === item
-            ? "text-white hover:text-purple-300 cursor-pointer text-xl text-[#fff] bg-[#560bad] h-full flex justify-center items-center px-3 transition-all"
-            : "text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all ";
+            ? "hover:drop-shadow-xl  text-pink-400 text-3xl font-bold cursor-pointer h-full w-20 flex justify-center items-center px-3 transition-all"
+            : "text-white hover:drop-shadow-xl hover:text-3xl  hover:drop-shadow-[0_5px_15px_rgba(237,201,21,0.75)] font-bold cursor-pointer text-xl h-full w-20 flex justify-center items-center px-3 transition-all ";
     };
-
     return (
-        <div className="w-fit h-10 mt-4 bg-[#7b2cbf]  rounded-xl flex justify-evenly items-center absolute top-1">
+        <div className="w-7/12 h-14 mt-4]  rounded-xl flex justify-evenly items-center absolute top-1 border-b-2 border-[rgba(237,201,21)]">
             <h1
                 className={getClassName("Home") + " rounded-l-xl"}
                 onClick={() => navigate("/")}
@@ -111,12 +109,6 @@ export default function TopNavigation() {
                 onClick={() => navigate("/profile")}
             >
                 Profile
-            </h1>
-            <h1
-                className="text-white hover:text-purple-300 cursor-pointer text-xl h-full flex justify-center items-center px-3 transition-all border-l-2 border-purple-500  "
-                onClick={logoutUser}
-            >
-                Logout
             </h1>
         </div>
     );

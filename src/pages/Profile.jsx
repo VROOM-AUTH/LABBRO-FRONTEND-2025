@@ -14,11 +14,11 @@ export default function Profile() {
             }
         });
     }, []);
-    const { user } = useContext(AuthContext);
+    const { user, logoutUser } = useContext(AuthContext);
     const loggedInUser = users.find((u) => u.id === user.user_id);
 
     return (
-        <div className="flex flex-col justify-start items-center w-full h-full">
+        <div className="flex flex-col justify-center items-center w-full h-full">
             <TopNavigation />
 
             <h1>My Profile</h1>
@@ -32,6 +32,12 @@ export default function Profile() {
                 <p>Total time: {secondsFormat(loggedInUser?.total_time)}</p>
             </div>
             <ProfilePictureUpdate />
+            <button
+                onClick={logoutUser}
+                className="bg-red-500 text-white p-2 rounded-lg"
+            >
+                Logout
+            </button>
         </div>
     );
 }

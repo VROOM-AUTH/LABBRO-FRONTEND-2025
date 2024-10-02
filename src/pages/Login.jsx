@@ -8,13 +8,13 @@ export default function Login() {
         logoutUser();
     }, []);
     return (
-        <div className="flex justify-center items-center  flex-col  w-full h-full bg-gradient-to-r from-[#141414]  to-[#040018]">
+        <div className="flex justify-start items-center  flex-col  w-full h-full bg-gradient-to-r from-[#141414]  to-[#040018]">
             <form
                 onSubmit={loginUser}
-                className="form-control flex justify-center items-center flex-col w-3/12 h-3/6"
+                className="form-control flex justify-center items-center m-48 flex-col w-3/12 h-3/6"
             >
                 <h1 className="text-4xl font-bold mb-6">Login</h1>
-                <label className="input input-bordered flex items-center gap-2 m-1">
+                <label className="input input-bordered flex items-center gap-2 m-2">
                     <FaUser />
                     <input
                         type="text"
@@ -23,7 +23,7 @@ export default function Login() {
                         required
                     />
                 </label>
-                <label className="input input-bordered flex items-center gap-2 m-1">
+                <label className="input input-bordered flex items-center gap-2 m-2">
                     <FaKey />
                     <input
                         type="password"
@@ -46,7 +46,7 @@ export default function Login() {
                 {error && <div className="text-red-500 mt-1">{error}</div>}
                 <input
                     type="submit"
-                    className="btn btn-primary w-72 mt-6"
+                    className="btn btn-primary w-72 mt-10"
                     value="Login"
                 />
             </form>

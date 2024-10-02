@@ -1,4 +1,4 @@
-function formatDate(isoString) {
+function formatDate(isoString, hourFirst = false, graphMode = false) {
     const date = new Date(isoString);
 
     // Get the date in the Greek timezone (Europe/Athens)
@@ -17,6 +17,12 @@ function formatDate(isoString) {
     // Split the formatted string to get the desired output
     const [day, month, , time] = formatted.split(/[/, ]/);
 
+    if (hourFirst) {
+        return `${time} ${day}/${month}`;
+    }
+    if (graphMode) {
+        return `${day}/${month}`;
+    }
     return `${day}/${month} ${time}`;
 }
 

@@ -5,6 +5,8 @@ import LabStatusCard from "../components/LabStatusCard";
 import UserStatusCard from "../components/UserStatusCard";
 import UserBarChart from "../components/UserBarChart";
 import UserList from "../components/UserList";
+import RecentActivity from "../components/RecentActivity";
+import LabTimeGraph from "../components/LabTimeGraph";
 
 export default function Home() {
     const api = useAxios();
@@ -13,6 +15,8 @@ export default function Home() {
     const [totalLabTime, setTotalLabTime] = useState(0);
     const [vroomvolts, setVroomvolts] = useState({});
     const [labSessions, setLabSessions] = useState([]);
+    const [recentActivity, setRecentActivity] = useState([]);
+    const [labDurations, setLabDurations] = useState([]);
 
     // Keep only the username and total_time fields and sort in descending order
     const graphData = users
@@ -32,6 +36,11 @@ export default function Home() {
                 setLabStatus(response.data);
             }
         });
+        api.get("/labstatus/durations/").then((response) => {
+            if (response.data) {
+                setLabDurations(response.data);
+            }
+        });
         api.get("/labstatus/durations/total").then((response) => {
             if (response.data) {
                 setTotalLabTime(response.data.total_duration);
@@ -47,11 +56,17 @@ export default function Home() {
                 setLabSessions(response.data);
             }
         });
+        api.get("/labsessions/recent/").then((response) => {
+            if (response.data) {
+                setRecentActivity(response.data);
+            }
+        });
     }, []);
+
     return (
-        <div className="flex justify-center items-center flex-col w-full h-full">
+        <div className="flex justify-evenly items-center w-full h-full">
             <TopNavigation />
-            <div className="flex justify-evenly items-start w-3/4 ">
+            <div className="flex flex-col">
                 <UserStatusCard
                     users={users}
                     vroomvolts={vroomvolts}
@@ -63,11 +78,18 @@ export default function Home() {
                     labStatus={labStatus}
                     totalLabTime={totalLabTime}
                 />
-                <UserList users={users} />
             </div>
-            <div className="flex justify-center items-center w-1/3 h-96 ">
-                <UserBarChart data={graphData} />
+            <div className="flex flex-col justify-center items-center w-2/5">
+                <div className="flex justify-between items-center w-full">
+                    <UserList users={users} />
+                    <LabTimeGraph labDurations={labDurations} />
+                </div>
+
+                <div className="flex justify-center items-center h-96 w-full">
+                    <UserBarChart data={graphData} />
+                </div>
             </div>
+            <RecentActivity users={users} recentActivity={recentActivity} />
         </div>
     );
 }

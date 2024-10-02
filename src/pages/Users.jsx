@@ -3,9 +3,9 @@ import TopNavigation from "../components/TopNavigation";
 
 export default function Users() {
     return (
-        <div className="flex flex-col justify-start items-center w-full h-full">
+        <div className="flex flex-col justify-center items-center w-full h-full">
             <TopNavigation />
-            <h1 className="text-2xl">Users</h1>
+            <h1 className="text-2xl">Users under construction!</h1>
         </div>
     );
 }

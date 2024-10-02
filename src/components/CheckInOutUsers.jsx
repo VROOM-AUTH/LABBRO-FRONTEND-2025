@@ -39,21 +39,23 @@ export default function CheckInOutUsers() {
     };
 
     return (
-        <div className="flex justify-center items-center flex-col w-2/12 h-min min-h-3/6 bg-[#201338] rounded-xl">
-            <h2 className="text-xl">Check In/Out Users</h2>
-            <div className="flex flex-col justify-evenly  items-start w-2/3">
+        <div className="flex justify-center items-center flex-col w-4/12 h-2/3 bg-[#201338] rounded-xl">
+            <h2 className="text-2xl">Check Users In & Out</h2>
+            <div className="flex justify-center flex-col items-center w-full flex-wrap h-5/6 overflow-auto">
                 {users &&
                     users.map((user) => (
                         <div
-                            className="flex justify-between items-center h-full w-full hover:bg-gray-800 my-1 p-1 px-5 rounded-xl cursor-pointer"
+                            className="flex justify-between items-center h-16 w-52 bg-[#10002b] hover:bg-gray-800 my-1 mx-2 p-1 px-5 rounded-xl cursor-pointer"
                             key={user.id}
                             onClick={() => handleInOut(user)}
                         >
                             <img
                                 src={user.image}
-                                className="w-14 h-14 mr-4 rounded-full"
+                                className="w-12 h-12 rounded-full"
                             ></img>
-                            <p>{user.username}</p>
+                            <p className="font-bold text-left">
+                                {user.username}
+                            </p>
                             <p
                                 className={
                                     getUserStatus(user)

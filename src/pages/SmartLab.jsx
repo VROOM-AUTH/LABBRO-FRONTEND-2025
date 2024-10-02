@@ -3,9 +3,9 @@ import TopNavigation from "../components/TopNavigation";
 
 export default function SmartLab() {
     return (
-        <div className="flex flex-col justify-start items-center w-full h-full">
+        <div className="flex flex-col justify-center items-center w-full h-full">
             <TopNavigation />
-            <h1 className="text-2xl">Smart Lab</h1>
+            <h1 className="text-2xl">Smart Lab under construction!</h1>
         </div>
     );
 }
