@@ -12,6 +12,9 @@ import {
 } from "recharts";
 
 export default function UserBarChart({ data }) {
+    const dataNoAdmin = data.filter((user) => user.username !== "labbro_admin");
+    const filteredData = dataNoAdmin.filter((user) => user.total_time > 0);
+
     //custom y axis to show hours and minutes instead of seconds
     const CustomYAxisTick = ({ x, y, payload }) => {
         return (
@@ -61,7 +64,7 @@ export default function UserBarChart({ data }) {
     return (
         <ResponsiveContainer width="100%" height="100%">
             <div className="text-2xl text-center">User's time</div>
-            <BarChart data={data}>
+            <BarChart data={filteredData}>
                 <defs>
                     <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#9480FA" stopOpacity={1} />
