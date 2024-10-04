@@ -55,14 +55,14 @@ export default function TopNavigation() {
             case "/marathon":
                 setActive("Marathon");
                 break;
-            case "/profile":
+            case `/profile/${user.user_id}`:
                 setActive("Profile");
                 break;
             case "/admin":
                 setActive("Admin");
                 break;
             default:
-                setActive("Home");
+                setActive("None");
         }
     }, [location.pathname]);
     // Function to determine the class name based on active state
@@ -122,7 +122,7 @@ export default function TopNavigation() {
 
                 <h1
                     className={getClassName("Profile")}
-                    onClick={() => navigate("/profile")}
+                    onClick={() => navigate(`/profile/${user.user_id}`)}
                 >
                     Profile
                 </h1>

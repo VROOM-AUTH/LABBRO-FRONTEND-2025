@@ -3,12 +3,23 @@ import useAxios from "../utils/useAxios";
 
 const ProfilePictureUpdate = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const [message, setMessage] = useState("");
     const api = useAxios();
 
     // Handle file change
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result); // Set the image preview to the result
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+            setImagePreview(null); // Reset the preview if no file is selected
+        }
     };
 
     // Handle form submit
@@ -24,8 +35,7 @@ const ProfilePictureUpdate = () => {
         formData.append("image", selectedFile);
 
         try {
-            const token = localStorage.getItem("token"); // Assuming you have the JWT token stored in localStorage
-            const response = await api.post(
+            const response = await api.put(
                 "/update-profile-picture/", // Use your actual endpoint
                 formData,
                 {
@@ -45,15 +55,25 @@ const ProfilePictureUpdate = () => {
     };
 
     return (
-        <div>
-            <h2>Update Profile Picture</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="file"
-                    onChange={handleFileChange}
-                    accept="image/*"
-                />
-                <button type="submit">Upload</button>
+        <div className="bg-[#190C34] p-2 rounded-xl w-full">
+            <h2 className="text-2xl text-center">Update Profile Picture</h2>
+            <form
+                onSubmit={handleSubmit}
+                className="flex justify-center items-center w-full flex-col"
+            >
+                <div className="flex w-full justify-center items-center">
+                    <input
+                        type="file"
+                        onChange={handleFileChange}
+                        accept="image/*"
+                        name="profileImage"
+                    />
+
+                    <button type="submit">Upload</button>
+                </div>
+                {imagePreview && (
+                    <img className="w-32 h-32" src={imagePreview}></img>
+                )}
             </form>
             {message && <p>{message}</p>}
         </div>

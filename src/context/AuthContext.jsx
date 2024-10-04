@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
@@ -8,7 +8,7 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
     const baseURL = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(true);
     const [authTokens, setAuthTokens] = useState(() => {
         const localTokens = localStorage.getItem("authTokens");
         const sessionTokens = sessionStorage.getItem("authTokens");
@@ -97,6 +97,50 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const updateTokens = async () => {
+        if (authTokens) {
+            try {
+                const response = await fetch(`${baseURL}/token/refresh/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        refresh: authTokens.refresh,
+                    }),
+                });
+                const data = await response.json();
+                if (response.status === 200) {
+                    setAuthTokens(data);
+                    setUser(jwtDecode(data.access));
+                    const localTokens = localStorage.getItem("authTokens");
+                    const sessionTokens = sessionStorage.getItem("authTokens");
+                    if (localTokens) {
+                        localStorage.setItem(
+                            "authTokens",
+                            JSON.stringify(data)
+                        );
+                    }
+                    if (sessionTokens) {
+                        sessionStorage.setItem(
+                            "authTokens",
+                            JSON.stringify(data)
+                        );
+                    }
+                    setLoading(false);
+                } else {
+                    setLoading(false);
+                    logoutUser();
+                }
+            } catch (error) {
+                setLoading(false);
+                logoutUser();
+            }
+        } else {
+            setLoading(false);
+        }
+    };
+
     let contextData = {
         user: user,
         setUser: setUser,
@@ -107,9 +151,13 @@ export const AuthProvider = ({ children }) => {
         error: error,
     };
 
+    useEffect(() => {
+        updateTokens();
+    }, []);
+
     return (
         <AuthContext.Provider value={contextData}>
-            {children}
+            {loading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );
 };

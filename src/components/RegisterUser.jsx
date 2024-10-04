@@ -81,6 +81,7 @@ export default function RegisterUser() {
             </label>
             <label className="input input-bordered flex items-center gap-2 m-1">
                 <MdNumbers />
+
                 <select id="rfidDropdown" name="rfid">
                     {rfids?.map((item) => (
                         <option key={item.rfid_uid} value={item.rfid_uid}>
