@@ -40,9 +40,9 @@ export default function RegisterUser() {
     return (
         <form
             onSubmit={registerUser}
-            className="form-control flex justify-center items-center flex-col w-2/12 h-3/6 bg-[#201338] rounded-xl"
+            className="form-control flex justify-center items-center flex-col w-2/12 h-3/6 bg-[#201338] rounded-xl md:w-11/12"
         >
-            <h2 className="text-xl">Create a new user</h2>
+            <h2 className="text-2xl">Create a new user</h2>
             <label className="input input-bordered flex items-center gap-2 m-1">
                 <FaUser />
                 <input

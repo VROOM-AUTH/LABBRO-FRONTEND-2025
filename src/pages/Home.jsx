@@ -85,7 +85,7 @@ export default function Home() {
                     <LabTimeGraph labDurations={labDurations} />
                 </div>
 
-                <div className="flex justify-center items-center h-96 w-full md:w-11/12">
+                <div className="flex justify-center items-center h-96 w-full md:w-11/12 md:mt-4">
                     <UserBarChart data={graphData} />
                 </div>
             </div>

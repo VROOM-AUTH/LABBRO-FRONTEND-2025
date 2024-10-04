@@ -66,11 +66,10 @@ export default function Profile() {
         return <div>Loading...</div>; // Show a loading state while data is being fetched
     }
 
-    console.log(userProfile);
     return (
         <div className="flex flex-col justify-center items-center w-full h-full">
             <TopNavigation />
-            <div className="flex flex-col justify-center items-center h-full">
+            <div className="flex flex-col justify-center items-center h-full md:pt-4">
                 <img
                     src={userProfile.image}
                     alt="Profile"
@@ -98,11 +97,11 @@ export default function Profile() {
 
             {/* Show profile update button only for logged-in user */}
             {userProfile.id === user.user_id && updateProfile && (
-                <div className="flex w-1/3 flex-col h-full justify-start items-center">
+                <div className="flex w-1/3 flex-col h-full justify-start items-center md:w-11/12 md:pb-16 md:justify-center md:items-center">
                     <ProfilePictureUpdate />
-                    <div className="flex w-full justify-between h-fit  ">
+                    <div className="flex w-full justify-between h-fit md:flex-col md:h-full">
                         <form
-                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl"
+                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4"
                             onSubmit={handleSubmit}
                         >
                             <h2 className="text-2xl mb-2">Update Profile</h2>
@@ -142,7 +141,7 @@ export default function Profile() {
                             {response && <p>{response}</p>}
                         </form>
                         <form
-                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl"
+                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4"
                             onSubmit={handlePasswordSubmit}
                         >
                             <h2 className="text-2xl mb-2">Change Password</h2>

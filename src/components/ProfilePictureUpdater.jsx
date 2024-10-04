@@ -55,7 +55,7 @@ const ProfilePictureUpdate = () => {
     };
 
     return (
-        <div className="bg-[#190C34] p-2 rounded-xl w-full">
+        <div className="bg-[#190C34] p-2 rounded-xl w-full md:mt-4">
             <h2 className="text-2xl text-center">Update Profile Picture</h2>
             <form
                 onSubmit={handleSubmit}

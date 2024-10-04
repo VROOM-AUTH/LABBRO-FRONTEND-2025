@@ -88,7 +88,7 @@ export default function LabTimeGraph({ labDurations }) {
     };
 
     return (
-        <div className="flex justify-center flex-col items-center w-96 h-96 ">
+        <div className="flex justify-center flex-col items-center w-96 h-96 md:mt-4">
             <div className="text-2xl">Lab time</div>
             {Array.isArray(labDurations) && labDurations.length !== 0 && (
                 <ResponsiveContainer width="100%" height="100%">

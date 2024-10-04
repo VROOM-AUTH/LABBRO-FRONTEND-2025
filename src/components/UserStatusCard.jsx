@@ -36,7 +36,7 @@ export default function UserStatusCard({
 
     const checkedIn = labStatus.currentMembers?.includes(user.username);
     return (
-        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2">
+        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2 md:w-11/12">
             <div className="flex w-3/4 h-20 justify-center items-center">
                 <img className="w-16 h-16 rounded-full" src={image}></img>
                 <h1 className="text-2xl w-full p-2">

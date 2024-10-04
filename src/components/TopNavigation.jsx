@@ -158,7 +158,7 @@ export default function TopNavigation() {
 
                 <FaUser
                     className={getClassNameMobile("Profile")}
-                    onClick={() => navigate("/profile")}
+                    onClick={() => navigate(`/profile/${user.user_id}`)}
                 ></FaUser>
             </div>
         </>

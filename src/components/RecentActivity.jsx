@@ -4,7 +4,7 @@ import formatDate from "../utils/dateFormat";
 export default function RecentActivity({ users, recentActivity }) {
     const navigate = useNavigate();
     return (
-        <div className="flex flex-col justify-start items-start w-fit">
+        <div className="flex flex-col justify-start items-start w-fit md:pb-16 md:mt-10">
             {recentActivity &&
                 users &&
                 recentActivity.map((entry, index) => (

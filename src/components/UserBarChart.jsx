@@ -60,6 +60,7 @@ export default function UserBarChart({ data }) {
 
     return (
         <ResponsiveContainer width="100%" height="100%">
+            <div className="text-2xl text-center">User's time</div>
             <BarChart data={data}>
                 <defs>
                     <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">

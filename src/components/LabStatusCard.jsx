@@ -8,7 +8,7 @@ export default function LabStatusCard({ users, labStatus, totalLabTime }) {
         labStatus?.currentMembers?.includes(user.username)
     );
     return (
-        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2">
+        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2  md:w-11/12">
             <h1 className="text-2xl w-full p-2 text-center">
                 The Lab is{" "}
                 {labStatus.status ? (
@@ -21,12 +21,17 @@ export default function LabStatusCard({ users, labStatus, totalLabTime }) {
             <div className="flex justify-start items-center  w-4/5 flex-wrap">
                 {usersInLab &&
                     usersInLab.map((user) => (
-                        <img
-                            key={user.id}
-                            src={user.image}
-                            className="w-8 h-8 rounded-full m-1"
-                            title={user.username}
-                        ></img>
+                        <div className="md:flex md:flex-col md:justify-center md:items-center">
+                            <img
+                                key={user.id}
+                                src={user.image}
+                                className="w-8 h-8 rounded-full m-1 md:w-10 md:h-10"
+                                title={user.username}
+                            ></img>
+                            <div className="hidden md:flex md:text-sm">
+                                {user.username}
+                            </div>
+                        </div>
                     ))}
             </div>
             <p className="my-1">
