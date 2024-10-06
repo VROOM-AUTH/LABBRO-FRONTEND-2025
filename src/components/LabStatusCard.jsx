@@ -12,7 +12,7 @@ export default function LabStatusCard({ users, labStatus, totalLabTime }) {
             <h1 className="text-2xl w-full p-2 text-center">
                 The Lab is{" "}
                 {labStatus.status ? (
-                    <span className="text-green-500">open</span>
+                    <span className="text-green-500 animate-pulse">open</span>
                 ) : (
                     <span className="text-red-500">closed</span>
                 )}

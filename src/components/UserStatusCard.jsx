@@ -36,40 +36,48 @@ export default function UserStatusCard({
 
     const checkedIn = labStatus.currentMembers?.includes(user.username);
     return (
-        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2 md:w-11/12">
+        <div className="flex rounded-lg shadow justify-evenly items-center flex-col bg-[#190c34] w-96 h-fit min-h-52 m-2 md:w-11/12">
             <div className="flex w-3/4 h-20 justify-center items-center">
                 <img className="w-16 h-16 rounded-full" src={image}></img>
                 <h1 className="text-2xl w-full p-2">
-                    Welcome{" "}
+                    Welcome back,{" "}
                     <span className="text-pink-400">
                         {name ? name : user.username}
                     </span>
                     !
                 </h1>
             </div>
-            <div className="flex justify-start items-center w-3/4 h-12">
-                <img className="w-8 h-8" src={coin}></img>
-                <p className="text-xl mx-2">{myVroomvolts}</p>
-            </div>
-            <div className="flex justify-start items-center w-3/4 h-12">
-                <FcClock className="w-8 h-8 text-black" />
-                <p className="text-xl mx-2">{secondsFormat(myTime)}</p>
-            </div>
-            <div className="flex justify-start items-center w-3/4 h-12">
-                <FaCalendarAlt className="w-7 h-7" />
+            <div className="flex justify-between items-center w-5/6 md:w-11/12">
+                <div className="flex justify-start items-center flex-col">
+                    <div className="flex justify-start items-center w-full h-12">
+                        <img className="w-8 h-8" src={coin}></img>
+                        <p className="text-xl mx-2">{myVroomvolts}</p>
+                    </div>
+                    <div className="flex justify-start items-center w-full h-12">
+                        <FcClock className="w-8 h-8 text-black" />
+                        <p className="text-xl mx-2">{secondsFormat(myTime)}</p>
+                    </div>
+                </div>
+                <div className="flex justify-end items-center flex-col">
+                    <div className="flex justify-end items-center w-full h-12">
+                        <FaCalendarAlt className="w-7 h-7" />
 
-                <p className="text-xl mx-2">{formatDate(lastTimeAtLab)}</p>
-            </div>
-            <div className="flex justify-start items-center w-3/4 h-12">
-                {checkedIn ? (
-                    <FaCheckCircle className="w-7 h-7" />
-                ) : (
-                    <FaCircleXmark className="w-7 h-7" />
-                )}
+                        <p className="text-xl mx-2">
+                            {formatDate(lastTimeAtLab)}
+                        </p>
+                    </div>
+                    <div className="flex justify-end items-center w-full h-12">
+                        {checkedIn ? (
+                            <FaCheckCircle className="w-7 h-7" />
+                        ) : (
+                            <FaCircleXmark className="w-7 h-7" />
+                        )}
 
-                <p className="text-xl mx-2">
-                    {checkedIn ? "Checked in" : "Checked out"}
-                </p>
+                        <p className="text-xl mx-2">
+                            {checkedIn ? "Checked in" : "Checked out"}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

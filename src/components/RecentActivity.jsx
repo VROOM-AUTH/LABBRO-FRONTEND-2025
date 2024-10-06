@@ -4,12 +4,12 @@ import formatDate from "../utils/dateFormat";
 export default function RecentActivity({ users, recentActivity }) {
     const navigate = useNavigate();
     return (
-        <div className="flex flex-col justify-start items-start w-fit md:pb-16 md:mt-10">
+        <div className="flex flex-col justify-start h-5/6 items-start w-fit md:pb-16 md:mt-10 md:w-3/5">
             {recentActivity &&
                 users &&
                 recentActivity.map((entry, index) => (
                     <div
-                        className={`flex justify-between items-center my-2 w-52 h-14 px-2 rounded-xl cursor-pointer transition-all duration-200 hover:scale-110 ${
+                        className={`flex justify-between items-center my-2 w-52 h-14 px-2 rounded-xl cursor-pointer transition-all duration-200 hover:scale-110 md:w-full ${
                             entry.status ? "bg-[#1C875D]" : "bg-[#9d3c55]"
                         }`}
                         style={{ opacity: (100 - index * 7) / 100 }} // dynamically setting opacity
