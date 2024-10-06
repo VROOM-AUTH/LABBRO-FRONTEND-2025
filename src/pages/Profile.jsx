@@ -2,13 +2,15 @@ import React, { useEffect, useContext, useState } from "react";
 import ProfilePictureUpdate from "../components/ProfilePictureUpdater";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
-
+import formatDataForActivity from "../utils/formatDataForActivity";
 import useAxios from "../utils/useAxios";
 import { useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import TopNavigation from "../components/TopNavigation";
 import secondsFormat from "../utils/secondsFormat";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/Modal";
+import AttendanceCalendar from "../components/AttendanceCalendar";
 
 export default function Profile() {
     const api = useAxios();
@@ -18,7 +20,11 @@ export default function Profile() {
     const [passwordResponse, setPasswordResponse] = useState(null);
     const { user, logoutUser } = useContext(AuthContext);
     const [updateProfile, setUpdateProfile] = useState(false);
+    const [userLabSessions, setUserLabSessions] = useState(null);
     const navigate = useNavigate();
+
+    const formatedDataForActivity = formatDataForActivity(userLabSessions);
+
     useEffect(() => {
         // Fetch the specific user by ID
         if (!id) return;
@@ -34,6 +40,11 @@ export default function Profile() {
                     navigate("/error");
                 }
             });
+        api.get(`labsessions/user/${id}`).then((response) => {
+            if (response.data) {
+                setUserLabSessions(response.data);
+            }
+        });
     }, [id]); // Refetch when the id changes
 
     const handleSubmit = async (e) => {
@@ -46,7 +57,6 @@ export default function Profile() {
         });
 
         setResponse("Profile updated successfully!");
-        console.log(response.data);
     };
 
     const handlePasswordSubmit = async (e) => {
@@ -77,9 +87,9 @@ export default function Profile() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="flex justify-center items-center w-full h-full md:flex-col ">
             <TopNavigation />
-            <div className="flex flex-col justify-center items-center h-full md:pt-4">
+            <div className="flex flex-col justify-center items-center mb-4 md:pt-4 md:w-full">
                 <img
                     src={userProfile.image}
                     alt="Profile"
@@ -90,24 +100,35 @@ export default function Profile() {
                 {userProfile.id === user.user_id && (
                     <div className="flex">
                         <button
-                            onClick={() => setUpdateProfile(true)}
+                            onClick={() => setUpdateProfile((prev) => !prev)}
                             className="bg-purple-500 text-white p-2 rounded-lg mx-1"
                         >
                             Update Profile
                         </button>
                         <button
-                            onClick={logoutUser}
+                            onClick={() =>
+                                document
+                                    .getElementById("logoutModal")
+                                    .showModal()
+                            }
                             className="bg-red-500 text-white p-2 rounded-lg mx-1"
                         >
                             Logout
                         </button>
                     </div>
                 )}
+                <AttendanceCalendar data={formatedDataForActivity} />
             </div>
+            <Modal
+                id="logoutModal"
+                title={"Logout?"}
+                content={"Are you sure you want to log out?"}
+                clickFunction={logoutUser}
+            />
 
             {/* Show profile update button only for logged-in user */}
             {userProfile.id === user.user_id && updateProfile && (
-                <div className="flex w-1/3 flex-col h-full justify-start items-center md:w-11/12 md:pb-16 md:justify-center md:items-center">
+                <div className="flex w-1/3 flex-col h-full justify-center items-center md:w-11/12 md:pb-16 md:justify-center md:items-center">
                     <ProfilePictureUpdate />
                     <div className="flex w-full justify-between h-fit md:flex-col md:h-full">
                         <form
@@ -157,14 +178,6 @@ export default function Profile() {
                             <h2 className="text-2xl mb-2">Change Password</h2>
 
                             <label className="input input-bordered flex items-center gap-2 my-1">
-                                <FaKey />
-                                <input
-                                    type="password"
-                                    name="oldPassword"
-                                    placeholder="Old Password"
-                                />
-                            </label>
-                            <label className="input input-bordered flex items-center gap-2 my-1">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="password"
@@ -172,12 +185,20 @@ export default function Profile() {
                                     placeholder="New Password"
                                 />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 mt-5 ">
+                            <label className="input input-bordered flex items-center gap-2 my-1">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="password"
                                     name="confirmPassword"
-                                    placeholder="Confirm Password"
+                                    placeholder="Confirm New Password"
+                                />
+                            </label>
+                            <label className="input input-bordered flex items-center gap-2 mt-5">
+                                <FaKey />
+                                <input
+                                    type="password"
+                                    name="oldPassword"
+                                    placeholder="Old Password"
                                 />
                             </label>
 

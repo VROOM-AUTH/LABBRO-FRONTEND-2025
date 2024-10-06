@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
+import Modal from "./Modal";
 export default function CheckInOutUsers() {
     const [users, setUsers] = useState(null);
     const [currentMembers, setCurrentMembers] = useState(null);
@@ -40,6 +41,11 @@ export default function CheckInOutUsers() {
         });
     };
 
+    const checkOutAll = () => {
+        handleInOut(users.filter((u) => u?.username === "labbro_admin")[0]);
+        document.getElementById("checkOutAllModal").close();
+    };
+
     return (
         <div className="flex justify-center items-center flex-col w-4/12 h-2/3 bg-[#201338] rounded-xl md:w-11/12 md:mt-4">
             <div className="flex justify-between items-center w-5/6 md:w-full md:flex-col md:mb-2">
@@ -48,17 +54,22 @@ export default function CheckInOutUsers() {
                     <button
                         className="bg-red-500 text-xl rounded-lg p-1"
                         onClick={() =>
-                            handleInOut(
-                                users.filter(
-                                    (u) => u?.username === "labbro_admin"
-                                )[0]
-                            )
+                            document
+                                .getElementById("checkOutAllModal")
+                                .showModal()
                         }
                     >
                         Check Out All!
                     </button>
                 )}
             </div>
+
+            <Modal
+                id={"checkOutAllModal"}
+                title={"Check out all?"}
+                content={"Are you sure you want to check out all users?"}
+                clickFunction={checkOutAll}
+            />
             <div className="flex justify-center flex-col items-center w-full flex-wrap h-5/6 overflow-auto">
                 {users &&
                     usersWithoutAdmin.map((user) => (

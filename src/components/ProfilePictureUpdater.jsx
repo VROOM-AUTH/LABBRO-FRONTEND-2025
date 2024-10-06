@@ -55,14 +55,15 @@ const ProfilePictureUpdate = () => {
     };
 
     return (
-        <div className="bg-[#190C34] p-2 rounded-xl w-full md:mt-4">
+        <div className="bg-[#190C34] p-2 rounded-xl w-full md:mt-4 justify-center items-center flex flex-col">
             <h2 className="text-2xl text-center">Update Profile Picture</h2>
             <form
                 onSubmit={handleSubmit}
-                className="flex justify-center items-center w-full flex-col"
+                className="flex justify-center items-center w-full flex-col "
             >
                 <div className="flex w-full justify-center items-center">
                     <input
+                        className="w-full"
                         type="file"
                         onChange={handleFileChange}
                         accept="image/*"

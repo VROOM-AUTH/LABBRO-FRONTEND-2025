@@ -61,3 +61,7 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+
+._calendar_1dwvo_19 {
+    padding: 0 !important;
+}
