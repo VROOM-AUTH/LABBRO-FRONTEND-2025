@@ -21,9 +21,11 @@ export default function LabStatusCard({ users, labStatus, totalLabTime }) {
             <div className="flex justify-start items-center  w-4/5 flex-wrap">
                 {usersInLab &&
                     usersInLab.map((user) => (
-                        <div className="md:flex md:flex-col md:justify-center md:items-center">
+                        <div
+                            className="md:flex md:flex-col md:justify-center md:items-center"
+                            key={user.id}
+                        >
                             <img
-                                key={user.id}
                                 src={user.image}
                                 className="w-8 h-8 rounded-full m-1 md:w-10 md:h-10"
                                 title={user.username}

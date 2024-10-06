@@ -7,10 +7,10 @@ import { AuthProvider } from "./context/AuthContext";
 import Profile from "./pages/Profile";
 import StaffRoutes from "./utils/StaffRoutes";
 import Vroomvolts from "./pages/Vroomvolts";
-import Users from "./pages/Users";
 import SmartLab from "./pages/SmartLab";
 import Marathon from "./pages/Marathon";
 import Admin from "./pages/Admin";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
     return (
@@ -19,7 +19,7 @@ function App() {
                 <AuthProvider>
                     <Routes>
                         <Route path="/login" element={<Login />} />
-
+                        <Route path="*" element={<ErrorPage />} />
                         {/* All other routes will have UsersProvider */}
                         <Route element={<PrivateRoutes />}>
                             {/* Private routes only for logged in users */}
@@ -29,7 +29,7 @@ function App() {
                                 element={<Vroomvolts />}
                                 exact
                             />
-                            <Route path="/users" element={<Users />} exact />
+
                             <Route
                                 path="/smartlab"
                                 element={<SmartLab />}

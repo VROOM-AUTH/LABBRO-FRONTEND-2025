@@ -18,8 +18,6 @@ export default function TopNavigation() {
         switch (pathname) {
             case "/vroomvolts":
                 return "Vroomvolts";
-            case "/users":
-                return "Users";
             case "/smartlab":
                 return "SmartLab";
             case "/marathon":
@@ -45,9 +43,6 @@ export default function TopNavigation() {
                 break;
             case "/vroomvolts":
                 setActive("Vroomvolts");
-                break;
-            case "/users":
-                setActive("Users");
                 break;
             case "/smartlab":
                 setActive("SmartLab");
@@ -93,12 +88,7 @@ export default function TopNavigation() {
                 >
                     Vroomvolts
                 </h1>
-                <h1
-                    className={getClassName("Users")}
-                    onClick={() => navigate("/users")}
-                >
-                    Users
-                </h1>
+
                 <h1
                     className={getClassName("SmartLab")}
                     onClick={() => navigate("/smartlab")}
@@ -137,10 +127,6 @@ export default function TopNavigation() {
                     className={getClassNameMobile("Vroomvolts")}
                     onClick={() => navigate("/vroomvolts")}
                 ></FaCoins>
-                <HiMiniUsers
-                    className={getClassNameMobile("Users")}
-                    onClick={() => navigate("/users")}
-                ></HiMiniUsers>
                 <LuSmartphoneNfc
                     className={getClassNameMobile("SmartLab")}
                     onClick={() => navigate("/smartlab")}

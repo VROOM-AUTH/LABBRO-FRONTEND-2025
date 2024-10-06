@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import TopNavigation from "../components/TopNavigation";
 import secondsFormat from "../utils/secondsFormat";
+import { useNavigate } from "react-router-dom";
+
 export default function Profile() {
     const api = useAxios();
     const [userProfile, setUserProfile] = useState(null);
@@ -16,14 +18,22 @@ export default function Profile() {
     const [passwordResponse, setPasswordResponse] = useState(null);
     const { user, logoutUser } = useContext(AuthContext);
     const [updateProfile, setUpdateProfile] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         // Fetch the specific user by ID
         if (!id) return;
-        api.get(`/users/${id}`).then((response) => {
-            if (response.data) {
-                setUserProfile(response.data);
-            }
-        });
+        api.get(`/users/${id}`)
+            .then((response) => {
+                if (response.data) {
+                    setUserProfile(response.data);
+                }
+            })
+            .catch((error) => {
+                if (error.status === 404) {
+                    // Redirect to the home page if the user is not found
+                    navigate("/error");
+                }
+            });
     }, [id]); // Refetch when the id changes
 
     const handleSubmit = async (e) => {
