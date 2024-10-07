@@ -7,7 +7,7 @@ export default function UserList({ users }) {
     );
     const navigate = useNavigate();
     return (
-        <div className="flex flex-col justify-center items-center bg-[#190C34] rounded-xl w-80 h-82 md:w-full md:mt-8">
+        <div className="flex flex-col justify-center items-center bg-[#190C34] rounded-xl w-80 h-80 max-h-80 md:w-full md:mt-8">
             <h2 className="text-2xl py-1">All Users</h2>
             <div className="flex justify-center items-start w-full flex-wrap overflow-auto">
                 {usersFiltered &&

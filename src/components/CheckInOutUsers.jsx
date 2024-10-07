@@ -47,7 +47,7 @@ export default function CheckInOutUsers() {
     };
 
     return (
-        <div className="flex justify-center items-center flex-col w-4/12 h-2/3 bg-[#201338] rounded-xl md:w-11/12 md:mt-4">
+        <div className="flex justify-center items-center flex-col w-7/12 h-2/3 bg-[#201338] rounded-xl md:w-11/12 md:mt-4">
             <div className="flex justify-between items-center w-5/6 md:w-full md:flex-col md:mb-2">
                 <h2 className="text-2xl">Check Users In & Out</h2>
                 {users && (
