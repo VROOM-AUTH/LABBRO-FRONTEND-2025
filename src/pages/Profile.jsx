@@ -128,11 +128,11 @@ export default function Profile() {
 
             {/* Show profile update button only for logged-in user */}
             {userProfile.id === user.user_id && updateProfile && (
-                <div className="flex w-1/3 flex-col h-full justify-center items-center md:w-11/12 md:pb-16 md:justify-center md:items-center">
+                <div className="flex w-1/3 flex-col h-full justify-center items-center md:w-11/12 md:pb-16 md:justify-center md:items-center ">
                     <ProfilePictureUpdate />
-                    <div className="flex w-full justify-between h-fit md:flex-col md:h-full">
+                    <div className="flex w-full justify-between h-fit md:flex-col md:h-full ">
                         <form
-                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4"
+                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                             onSubmit={handleSubmit}
                         >
                             <h2 className="text-2xl mb-2">Update Profile</h2>
@@ -172,7 +172,7 @@ export default function Profile() {
                             {response && <p>{response}</p>}
                         </form>
                         <form
-                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4"
+                            className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                             onSubmit={handlePasswordSubmit}
                         >
                             <h2 className="text-2xl mb-2">Change Password</h2>

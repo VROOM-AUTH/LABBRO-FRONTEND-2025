@@ -88,8 +88,10 @@ export default function LabTimeGraph({ labDurations }) {
     };
 
     return (
-        <div className="flex justify-center flex-col items-center w-96 h-96 md:mt-4">
-            <div className="text-2xl">Lab time</div>
+        <div className="flex justify-center flex-col items-center w-96 md:mt-4 rounded-2xl h-96 bg-[#190C34] ml-2 md:ml-0 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+            <div className="text-2xl py-1 bg-[#473663] rounded-t-2xl w-full text-center">
+                Lab time
+            </div>
             {Array.isArray(labDurations) && labDurations.length !== 0 && (
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={durationArray}>

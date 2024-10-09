@@ -157,7 +157,11 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={contextData}>
-            {loading ? <div>Loading...</div> : children}
+            {loading ? (
+                <span className="loading loading-dots loading-sm"></span>
+            ) : (
+                children
+            )}
         </AuthContext.Provider>
     );
 };

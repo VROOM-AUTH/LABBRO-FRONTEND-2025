@@ -13,6 +13,10 @@
     font-family: "Verdana", sans-serif;
 
     background-color: #10002b;
+    background: url("./assets/bg.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #fff;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -60,8 +64,4 @@ button:hover {
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
-
-._calendar_1dwvo_19 {
-    padding: 0 !important;
 }

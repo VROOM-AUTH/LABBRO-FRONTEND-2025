@@ -21,6 +21,7 @@ export default function Login() {
                         type="text"
                         name="username"
                         placeholder="Username"
+                        className="bg-[#1D232A"
                         required
                     />
                 </label>
@@ -30,6 +31,7 @@ export default function Login() {
                         type="password"
                         name="password"
                         placeholder="Password"
+                        className="bg-[#1D232A"
                         required
                     />
                 </label>

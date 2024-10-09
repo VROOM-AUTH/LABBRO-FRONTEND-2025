@@ -8,11 +8,11 @@ export default function VroomvoltGamesCard() {
     const navigate = useNavigate();
     return (
         <div
-            className="flex justify-evenly items-center h-52 bg-cover bg-center md:w-11/12 md:mt-2 md:mb-4 rounded-xl mt-2 cursor-pointer"
+            className="flex justify-evenly items-center h-52 bg-cover bg-center md:w-11/12 md:mt-2 md:mb-4 rounded-xl mt-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
             style={{ backgroundImage: `url(${vroomgamesImage})` }}
         >
             <div
-                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24"
+                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24 cursor-pointer"
                 onClick={() => navigate("/vroomvolts")}
             >
                 <img
@@ -22,7 +22,7 @@ export default function VroomvoltGamesCard() {
                 />
             </div>
             <div
-                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24"
+                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24 cursor-pointer"
                 onClick={() => navigate("/vroomvolts")}
             >
                 <img
@@ -32,7 +32,7 @@ export default function VroomvoltGamesCard() {
                 />
             </div>
             <div
-                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24"
+                className="flex justify-center items-center w-36 h-36 rounded-2xl bg-[#10002BDF] transition-all duration-200 hover:scale-105 md:w-24 md:h-24 cursor-pointer"
                 onClick={() => navigate("/vroomvolts")}
             >
                 <img
