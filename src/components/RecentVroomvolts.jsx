@@ -13,7 +13,8 @@ export default function RecentVroomvolts({ users }) {
         });
     }, []);
 
-    const slicedVroomvolts = recentVroomvolts?.slice(-3);
+    const slicedVroomvolts = recentVroomvolts?.slice(0, 3);
+
     return (
         <div className="flex justify-center items-center w-full flex-col bg-[#190C34] rounded-xl mt-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
             <h1 className="text-2xl w-full text-center bg-[#473663] rounded-t-lg py-1 flex items-center justify-center">
