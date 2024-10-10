@@ -15,23 +15,21 @@ export default function Login() {
                 className="form-control flex justify-center items-center m-48 flex-col w-3/12 h-3/6 md:w-full"
             >
                 <h1 className="text-4xl font-bold mb-6">Login</h1>
-                <label className="input input-bordered flex items-center gap-2 m-2">
+                <label className="input input-bordered flex items-center gap-2 m-2 bg-[#1D232A]">
                     <FaUser />
                     <input
                         type="text"
                         name="username"
                         placeholder="Username"
-                        className="bg-[#1D232A"
                         required
                     />
                 </label>
-                <label className="input input-bordered flex items-center gap-2 m-2">
+                <label className="input input-bordered flex items-center gap-2 m-2 bg-[#1D232A]">
                     <FaKey />
                     <input
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className="bg-[#1D232A"
                         required
                     />
                 </label>

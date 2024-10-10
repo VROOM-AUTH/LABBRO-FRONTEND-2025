@@ -136,7 +136,7 @@ export default function Profile() {
                             onSubmit={handleSubmit}
                         >
                             <h2 className="text-2xl mb-2">Update Profile</h2>
-                            <label className="input input-bordered flex items-center gap-2 my-1 w-11/12">
+                            <label className="input input-bordered flex items-center gap-2 my-1 w-11/12 bg-[#1D232A]">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="text"
@@ -145,7 +145,7 @@ export default function Profile() {
                                     defaultValue={userProfile.first_name}
                                 />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 my-1 w-11/12">
+                            <label className="input input-bordered flex items-center gap-2 my-1 w-11/12 bg-[#1D232A]">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="text"
@@ -154,7 +154,7 @@ export default function Profile() {
                                     defaultValue={userProfile.last_name}
                                 />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 mt-5 w-11/12">
+                            <label className="input input-bordered flex items-center gap-2 mt-5 w-11/12 bg-[#1D232A]">
                                 <FaKey />
                                 <input
                                     type="password"
@@ -177,7 +177,7 @@ export default function Profile() {
                         >
                             <h2 className="text-2xl mb-2">Change Password</h2>
 
-                            <label className="input input-bordered flex items-center gap-2 my-1">
+                            <label className="input input-bordered flex items-center gap-2 my-1 bg-[#1D232A]">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="password"
@@ -185,7 +185,7 @@ export default function Profile() {
                                     placeholder="New Password"
                                 />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 my-1">
+                            <label className="input input-bordered flex items-center gap-2 my-1 bg-[#1D232A]">
                                 <MdDriveFileRenameOutline />
                                 <input
                                     type="password"
@@ -193,7 +193,7 @@ export default function Profile() {
                                     placeholder="Confirm New Password"
                                 />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 mt-5">
+                            <label className="input input-bordered flex items-center gap-2 mt-5 bg-[#1D232A]">
                                 <FaKey />
                                 <input
                                     type="password"

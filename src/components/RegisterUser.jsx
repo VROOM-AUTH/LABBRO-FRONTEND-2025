@@ -43,7 +43,7 @@ export default function RegisterUser() {
             className="form-control flex justify-center items-center flex-col w-2/12 h-3/6 bg-[#201338] rounded-xl md:w-11/12"
         >
             <h2 className="text-2xl">Create a new user</h2>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <FaUser />
                 <input
                     type="text"
@@ -52,7 +52,7 @@ export default function RegisterUser() {
                     required
                 />
             </label>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <FaUser />
                 <input
                     type="text"
@@ -61,7 +61,7 @@ export default function RegisterUser() {
                     required
                 />
             </label>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <FaUser />
                 <input
                     type="text"
@@ -70,7 +70,7 @@ export default function RegisterUser() {
                     required
                 />
             </label>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <FaLock />
                 <input
                     type="text"
@@ -79,7 +79,7 @@ export default function RegisterUser() {
                     required
                 />
             </label>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <MdNumbers />
 
                 <select id="rfidDropdown" name="rfid">
@@ -91,7 +91,7 @@ export default function RegisterUser() {
                 </select>
                 {/* <input type="text"  placeholder="RFID" required /> */}
             </label>
-            <label className="input input-bordered flex items-center gap-2 m-1">
+            <label className="input input-bordered flex items-center gap-2 m-1 bg-[#1D232A]">
                 <MdNumbers />
                 <input
                     type="text"

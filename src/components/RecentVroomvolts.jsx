@@ -6,11 +6,23 @@ export default function RecentVroomvolts({ users }) {
     const api = useAxios();
     const [recentVroomvolts, setRecentVroomvolts] = useState(null);
     useEffect(() => {
+        const halfMinute = 30 * 1000;
         api.get("/vroomvolts/recent/").then((response) => {
             if (response.data) {
                 setRecentVroomvolts(response.data);
             }
         });
+        const interval = setInterval(() => {
+            api.get("/vroomvolts/recent/").then((response) => {
+                if (response.data) {
+                    setRecentVroomvolts(response.data);
+                }
+            });
+        }, halfMinute);
+
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     const slicedVroomvolts = recentVroomvolts?.slice(0, 3);

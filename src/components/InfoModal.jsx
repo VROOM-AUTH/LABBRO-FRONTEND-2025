@@ -3,7 +3,7 @@ import React from "react";
 export default function InfoModal({ id, title, content }) {
     return (
         <dialog id={id} className="modal">
-            <div className="modal-box">
+            <div className="modal-box  bg-[#1D232A]">
                 <h3 className="font-bold text-2xl">{title}</h3>
                 <p className="py-4">{content}</p>
                 <div className="modal-action">
