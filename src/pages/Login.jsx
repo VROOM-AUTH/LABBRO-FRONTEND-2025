@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { FaUser, FaKey } from "react-icons/fa";
 import InfoModal from "../components/InfoModal";
 export default function Login() {
     const { loginUser, error, logoutUser } = useContext(AuthContext);
-
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         logoutUser();
     }, []);
@@ -33,6 +33,9 @@ export default function Login() {
                         required
                     />
                 </label>
+                {loading && (
+                    <div className="loading loading-dots loading-sm"></div>
+                )}
                 <label className="label cursor-pointer w-3/5 flex justify-start md:w-4/5">
                     <span className="label-text mr-3 text-base">
                         Remember me
@@ -50,6 +53,7 @@ export default function Login() {
                         type="submit"
                         className="btn bg-[#515ffb] hover:bg-[#6e7aff] text-white"
                         value="Login"
+                        onClick={() => setLoading(true)}
                     />
                     <h1
                         className="text-lg text-[#6e7aff] cursor-pointer"
