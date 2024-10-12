@@ -82,7 +82,13 @@ export default function UserStatusCard({
                     </div>
                     <div className="flex justify-start items-center w-full h-12">
                         <FcClock className="w-8 h-8 text-black" />
-                        <p className="text-xl mx-2">{secondsFormat(myTime)}</p>
+                        {myTime ? (
+                            <p className="text-xl mx-2">
+                                {secondsFormat(myTime)}
+                            </p>
+                        ) : (
+                            <span className="loading loading-dots loading-sm"></span>
+                        )}
                     </div>
                 </div>
                 <div className="flex justify-end items-center flex-col">
@@ -90,7 +96,11 @@ export default function UserStatusCard({
                         <FaCalendarAlt className="w-7 h-7" />
 
                         <p className="text-xl mx-2">
-                            {formatDate(lastTimeAtLab)}
+                            {lastTimeAtLab ? (
+                                formatDate(lastTimeAtLab)
+                            ) : (
+                                <span className="loading loading-dots loading-sm"></span>
+                            )}
                         </p>
                     </div>
                     <div className="flex justify-end items-center w-full h-12">

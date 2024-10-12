@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import wheel from "../assets/VroomWheel.webp";
 import wheelArrow from "../assets/wheelArrow.png";
 import useAxios from "../utils/useAxios";
-import AnimatedNumber from "./AnimatedNumber";
+import { FaCircleInfo } from "react-icons/fa6";
+import InfoModal from "./InfoModal";
 export default function LuckyWheel({ vroomvolts, setVroomvolts }) {
     const api = useAxios();
 
@@ -81,10 +82,21 @@ export default function LuckyWheel({ vroomvolts, setVroomvolts }) {
     };
 
     return (
-        <div className="w-1/4 h-2/3 bg-[#190C34] rounded-xl flex flex-col justify-evenly items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
-            <h1 className="text-2xl text-white font-bold mt-4 mb-4">
-                Lucky Wheel
-            </h1>
+        <div className="w-1/4 h-2/3 bg-[#190C34] rounded-xl flex flex-col justify-evenly items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:w-11/12 overflow-hidden">
+            <div className="mt-4 mb-4 flex justify-center w-11/12 relative">
+                <h1 className="text-2xl text-white font-bold">Lucky Wheel</h1>
+                <FaCircleInfo
+                    className="text-white text-3xl absolute right-0 cursor-pointer hover:text-[#ee0f82] transition-all duration-100"
+                    onClick={() =>
+                        document.getElementById("WheelModal").showModal()
+                    }
+                />
+            </div>
+            <InfoModal
+                id="WheelModal"
+                title="Lucky Wheel Game"
+                content="For just 5 Vroomvolts, you have the chance to win a staggering 500 Vroomvolts! But beware... the stakes are high, and it's just as easy to lose 500 Vroomvolts! Are you bold enough to take the risk? Let’s find out..."
+            />
             <div className="flex justify-start flex-col items-center">
                 <img src={wheelArrow} className="w-[30px]" />
                 <img
