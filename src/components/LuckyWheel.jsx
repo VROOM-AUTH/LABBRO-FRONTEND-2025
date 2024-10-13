@@ -40,7 +40,6 @@ export default function LuckyWheel({ vroomvolts, setVroomvolts }) {
                         // Add exactly 5 full rotations (5 * 360) + landing position
                         const totalRotation =
                             fullRotations - response.data.position;
-                        console.log(totalRotation);
                         // Update the rotation state
                         setRotation(totalRotation);
 

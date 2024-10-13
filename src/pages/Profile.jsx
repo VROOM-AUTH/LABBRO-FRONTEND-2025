@@ -11,6 +11,8 @@ import secondsFormat from "../utils/secondsFormat";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import AttendanceCalendar from "../components/AttendanceCalendar";
+import UserTimeGraph from "../components/UserTimeGraph";
+import UserVroomvoltsGraph from "../components/UserVroomvoltsGraph";
 
 export default function Profile() {
     const api = useAxios();
@@ -22,9 +24,7 @@ export default function Profile() {
     const [updateProfile, setUpdateProfile] = useState(false);
     const [userLabSessions, setUserLabSessions] = useState(null);
     const navigate = useNavigate();
-
     const formatedDataForActivity = formatDataForActivity(userLabSessions);
-
     useEffect(() => {
         // Fetch the specific user by ID
         if (!id) return;
@@ -87,16 +87,21 @@ export default function Profile() {
     }
 
     return (
-        <div className="flex justify-center items-center w-full h-full md:flex-col ">
+        <div className="flex justify-center items-start w-full h-5/6 md:flex-col md:items-center flex-wrap">
             <TopNavigation />
-            <div className="flex flex-col justify-center items-center mb-4 md:pt-4 md:w-full">
+            <AttendanceCalendar data={formatedDataForActivity} />
+            <div className="flex flex-col justify-evenly w-1/4 p-4 h-96 mt-8 rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] mx-4 items-center mb-4 bg-[#190C34] md:pt-4 md:w-11/12 md:p-0 md:mt-4 order-2 md:order-1">
                 <img
                     src={userProfile.image}
                     alt="Profile"
-                    className="w-32 h-32 rounded-full"
+                    className="w-36 h-36 rounded-full"
                 />
                 <h2 className="text-2xl">@{userProfile.username}</h2>
+                <h2 className="text-xl">
+                    {userProfile.first_name} {userProfile.last_name}
+                </h2>
                 <p>Total time: {secondsFormat(userProfile.total_time)}</p>
+
                 {userProfile.id === user.user_id && (
                     <div className="flex">
                         <button
@@ -117,8 +122,9 @@ export default function Profile() {
                         </button>
                     </div>
                 )}
-                <AttendanceCalendar data={formatedDataForActivity} />
             </div>
+            {!updateProfile && <UserTimeGraph data={userLabSessions} />}
+            {!updateProfile && <UserVroomvoltsGraph userId={id} />}
             <Modal
                 id="logoutModal"
                 title={"Logout?"}
@@ -128,9 +134,9 @@ export default function Profile() {
 
             {/* Show profile update button only for logged-in user */}
             {userProfile.id === user.user_id && updateProfile && (
-                <div className="flex w-1/3 flex-col h-full justify-center items-center md:w-11/12 md:pb-16 md:justify-center md:items-center ">
+                <div className="flex w-full flex-col h-full justify-center items-center md:pb-16 md:justify-evenly md:items-center backdrop-blur-lg z-20 absolute top-0 bg-[#0006] md:w-full md:h-full min-h-fit">
                     <ProfilePictureUpdate />
-                    <div className="flex w-full justify-between h-fit md:flex-col md:h-full ">
+                    <div className="flex w-1/3 justify-between h-fit md:flex-col md:h-full md:w-11/12 ">
                         <form
                             className="form-control bg-[#190C34] m-2 w-full flex justify-center items-center flex-col py-4 rounded-xl md:m-0 md:mt-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                             onSubmit={handleSubmit}
@@ -211,6 +217,12 @@ export default function Profile() {
                             {passwordResponse && <p>{passwordResponse}</p>}
                         </form>
                     </div>
+                    <button
+                        onClick={() => setUpdateProfile((prev) => !prev)}
+                        className="bg-pink-500 text-white p-2 rounded-lg mx-1 md:mt-12"
+                    >
+                        Close Profile Updater
+                    </button>
                 </div>
             )}
         </div>

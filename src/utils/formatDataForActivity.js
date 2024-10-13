@@ -10,7 +10,7 @@ const levels = (duration) => {
     }
 };
 
-export default function formatDataForActivity(data) {
+export default function formatDataForActivity(data, forUser = false) {
     let startTime = null;
     const sessionDurations = [];
 
@@ -43,6 +43,9 @@ export default function formatDataForActivity(data) {
             startTime = null; // Reset for the next session
         }
     });
+    if (forUser) {
+        return sessionDurations;
+    }
 
     const transformedData = sessionDurations.map((entry) => ({
         [entry.date]: {

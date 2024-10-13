@@ -13,7 +13,7 @@ export default function AttendanceCalendar({ data }) {
     });
 
     return (
-        <div className="flex justify-start items-center flex-col w-3/5 bg-[#190C34] p-4 rounded-xl mb-8 mt-8 md:w-11/12 md:mt-4 md:mb-8 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+        <div className="flex justify-evenly h-96 items-center flex-col w-[600px] mr-2 bg-[#190C34] p-4 rounded-xl mb-8 mt-8 md:w-11/12 md:mt-4 md:mb-0 md:mr-0 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] order-1 md:order-2">
             <h2 className="text-2xl font-bold text-white mb-4">
                 Attendance Calendar
             </h2>
