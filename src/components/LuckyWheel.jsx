@@ -81,7 +81,7 @@ export default function LuckyWheel({ vroomvolts, setVroomvolts }) {
     };
 
     return (
-        <div className="w-1/4 h-2/3 bg-[#190C34] rounded-xl flex flex-col justify-evenly items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:w-11/12 md:h-fit overflow-hidden  ">
+        <div className="w-1/4 bg-[#190C34] rounded-xl flex flex-col justify-evenly items-center h-fit shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:w-11/12 md:h-fit overflow-hidden  ">
             <div className="mt-4 mb-4 flex justify-center w-11/12 relative">
                 <h1 className="text-2xl text-white font-bold">Lucky Wheel</h1>
                 <FaCircleInfo
