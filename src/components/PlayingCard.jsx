@@ -66,7 +66,7 @@ import CardAD from "../assets/Cards/AD.svg";
 import CardAH from "../assets/Cards/AH.svg";
 
 export default function PlayingCard({ card }) {
-    const cardClass = "w-24 h-36 m-1";
+    const cardClass = "w-24 h-36 m-1 md:w-16 md:h-24";
     switch (card) {
         case "2B":
             return <img src={Card2B} className={cardClass} alt="2B" />;
