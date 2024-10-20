@@ -90,7 +90,7 @@ export default function Profile() {
         <div className="flex justify-center items-start w-full h-5/6 md:flex-col md:items-center flex-wrap">
             <TopNavigation />
             <AttendanceCalendar data={formatedDataForActivity} />
-            <div className="flex flex-col justify-evenly w-1/4 p-4 h-96 mt-8 rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] mx-4 items-center mb-4 bg-[#190C34] md:pt-4 md:w-11/12 md:p-0 md:mt-4 order-2 md:order-1">
+            <div className="flex flex-col justify-evenly w-1/4 p-4 h-96 mt-4 rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] mx-4 items-center mb-4 bg-[#190C34] md:pt-4 md:w-11/12 md:p-0 md:mt-4 order-2 md:order-1">
                 <img
                     src={userProfile.image}
                     alt="Profile"
