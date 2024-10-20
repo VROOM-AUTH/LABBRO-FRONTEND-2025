@@ -62,7 +62,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
             <InfoModal
                 id="blackjackModal"
                 title="Blackjack Game"
-                content="Now, you're in control of the stakes! Bet as much as you dare and go for double or nothing. Whether you're feeling lucky or playing it smart, the choice is yours. Bet big, and you could double your Vroomvolts in an instant — but don't forget, it’s all or nothing. Ready to go all in? Let’s see if luck is on your side..."
+                content="Take control of the stakes! Bet boldly and aim for double or nothing as each round brings a fresh shuffle of the deck. Will you play it safe or risk it all? Bet big to potentially double your Vroomvolts in an instant, but remember: it’s all or nothing! Are you ready to go all in? Let’s find out..."
             />
 
             <div className="flex w-full h-full justify-center items-center flex-col  ">
