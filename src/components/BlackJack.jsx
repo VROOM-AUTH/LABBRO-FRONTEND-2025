@@ -88,7 +88,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                             <h2 className="text-white text-l font-bold bg-gray-950 px-4 mb-1 rounded-md">
                                 Bet Amount
                             </h2>
-                            <div class="flex justify-center items-center max-w-[8rem]">
+                            <div className="flex justify-center items-center max-w-[8rem]">
                                 <button
                                     type="button"
                                     className="bg-gray-800 rounded-l-l rounded-r-none h-8 flex justify-center items-center"
@@ -100,7 +100,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                                     }}
                                 >
                                     <svg
-                                        class="w-3 h-3 text-gray-900 dark:text-white"
+                                        className="w-3 h-3 text-gray-900 dark:text-white"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -108,9 +108,9 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                                     >
                                         <path
                                             stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
                                             d="M1 1h16"
                                         />
                                     </svg>
@@ -138,7 +138,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                                     }}
                                 >
                                     <svg
-                                        class="w-3 h-3 text-gray-900 dark:text-white"
+                                        className="w-3 h-3 text-gray-900 dark:text-white"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -146,9 +146,9 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                                     >
                                         <path
                                             stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
                                             d="M9 1v16M1 9h16"
                                         />
                                     </svg>

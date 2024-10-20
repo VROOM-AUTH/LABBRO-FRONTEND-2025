@@ -6,6 +6,7 @@ import useAxios from "../utils/useAxios";
 import AuthContext from "../context/AuthContext";
 import coin from "../assets/coin.png";
 import AnimatedNumber from "../components/AnimatedNumber";
+import { CardImagesProvider } from "../context/CardsPreloader";
 export default function Vroomvolts() {
     const { user } = useContext(AuthContext);
     const api = useAxios();
@@ -34,7 +35,12 @@ export default function Vroomvolts() {
                 </h1>
             </div>
             <LuckyWheel vroomvolts={vroomvolts} setVroomvolts={setVroomvolts} />
-            <BlackJack vroomvolts={vroomvolts} setVroomvolts={setVroomvolts} />
+            <CardImagesProvider>
+                <BlackJack
+                    vroomvolts={vroomvolts}
+                    setVroomvolts={setVroomvolts}
+                />
+            </CardImagesProvider>
         </div>
     );
 }
