@@ -49,7 +49,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
         });
     };
     return (
-        <div className="w-2/4 bg-[#17760c] rounded-xl h-fit flex flex-col justify-start items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-[radial-gradient(#00000094_1px,transparent_1px)] [background-size:8px_8px] md:w-11/12 md:h-fit md:mt-8 md:mb-16 overflow-hidden">
+        <div className="w-1/4 bg-[#17760c] rounded-xl h-fit flex flex-col justify-start items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-[radial-gradient(#00000094_1px,transparent_1px)] [background-size:8px_8px] md:w-11/12 md:h-fit md:mt-8 md:mb-16 overflow-hidden">
             <div className="mb-4 flex justify-center items-center w-full relative h-12 bg-[#0c4705]">
                 <h1 className="text-2xl text-white font-bold">Blackjack</h1>
                 <FaCircleInfo
@@ -65,8 +65,8 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                 content="Take control of the stakes! Bet boldly and aim for double or nothing as each round brings a fresh shuffle of the deck. Will you play it safe or risk it all? Bet big to potentially double your Vroomvolts in an instant, but remember: it’s all or nothing! Are you ready to go all in? Let’s find out..."
             />
 
-            <div className="flex w-full h-full justify-center items-center flex-col  ">
-                <div className="w-4/5 flex justify-center items-center my-2 bg-[#00000094] rounded-xl relative flex-wrap h-fit pt-10 pb-4">
+            <div className="flex w-full h-full justify-center items-center flex-col ">
+                <div className="w-4/5 flex justify-center items-center my-2 bg-[#00000094] rounded-xl relative flex-wrap h-fit pt-10 pb-4 overflow-y-auto max-h-96">
                     <h2 className="absolute top-2 text-xl font-bold text-[#ff4229]">
                         Opponent's Cards
                     </h2>
@@ -74,7 +74,7 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                         <PlayingCard key={index} card={card} />
                     ))}
                 </div>
-                <div className="w-4/5 flex justify-center items-center my-2  bg-[#00000094] rounded-xl relative flex-wrap h-fit pt-10 pb-4">
+                <div className="w-4/5 flex justify-center items-center my-2  bg-[#00000094] rounded-xl relative flex-wrap h-fit pt-10 pb-4 overflow-y-auto max-h-96">
                     <h2 className="absolute top-2 text-xl font-bold text-[#50ff29]">
                         Your Cards
                     </h2>
