@@ -1,8 +1,9 @@
 import React from "react";
-import { data } from "../utils/RouletaData";
+import { optionData } from "../utils/RouletaData";
 export default function RouletaBoard({ bets, setBets, betAmount }) {
-    data.sort((a, b) => a.option - b.option);
-    const dataToMap = data.slice(2, data.length);
+    let newData = [...optionData];
+    newData.sort((a, b) => a.option - b.option);
+    const dataToMap = newData.slice(2, newData.length);
 
     const handleBet = (option) => {
         const newBet = { bet: option, amount: betAmount };
@@ -16,7 +17,6 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
         }
     };
 
-    console.log(bets);
     return (
         <div className="w-full h-52 flex flex-col justify-start items-center my-4">
             <div className="flex w-fit h-[133px] flex-col-reverse flex-wrap">

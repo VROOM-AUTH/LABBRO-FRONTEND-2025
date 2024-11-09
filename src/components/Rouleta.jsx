@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import {
-    data,
+    optionData,
     first12Numbers,
     second12Numbers,
     third12Numbers,
@@ -44,7 +44,6 @@ export default function Rouleta({ vroomvolts, setVroomvolts }) {
         setMustSpin(true);
     };
 
-    console.log(betAmount);
     return (
         <div className="flex justify-center items-center flex-col w-1/3 h-fit rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAACdJREFUGFclirENAAAMguD/o220ixpQMYgEIKi2wQIKJojG5swePw9HKQkOQbvAHAAAAABJRU5ErkJggg==')] bg-repeat bg-[#7a2222]">
             <div className="mt-4 mb-4 flex justify-center w-11/12 relative">
@@ -64,7 +63,7 @@ export default function Rouleta({ vroomvolts, setVroomvolts }) {
             <Wheel
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
-                data={data}
+                data={optionData}
                 onStopSpinning={stopSpining}
                 textColors={["white"]}
                 radiusLineColor="#EFB98D"

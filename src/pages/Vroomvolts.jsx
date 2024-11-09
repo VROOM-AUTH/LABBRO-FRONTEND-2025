@@ -26,7 +26,7 @@ export default function Vroomvolts() {
     }, []);
 
     return (
-        <div className="flex flex-col justify-start items-center w-screen h-screen relative md:flex-col md:justify-center md:h-fit ">
+        <div className="flex flex-col justify-start items-center w-screen h-screen relative md:flex-col md:justify-center md:h-fit select-none">
             <TopNavigation />
 
             <div className="mt-8 absolute top-8 left-12 h-14 overflow-x-hidden flex justify-start items-center bg-[#351748] py-2 px-3 rounded-3xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:top-2 md:mt-0 md:left-2 md:fixed z-10">

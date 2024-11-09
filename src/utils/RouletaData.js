@@ -1,4 +1,4 @@
-const data = [
+const optionData = [
     { option: "0", style: { backgroundColor: "green" } },
     { option: "28", style: { backgroundColor: "black" } },
     { option: "9", style: { backgroundColor: "red" } },
@@ -60,7 +60,7 @@ const nineteento36 = [
 ];
 
 export {
-    data,
+    optionData,
     first12Numbers,
     second12Numbers,
     third12Numbers,

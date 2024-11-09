@@ -9,7 +9,7 @@ export default function Login() {
         logoutUser();
     }, []);
     return (
-        <div className="flex justify-start items-center  flex-col  w-full h-full bg-gradient-to-r from-[#141414]  to-[#040018] md:h-screen">
+        <div className="flex justify-start items-center  flex-col  w-screen h-screen bg-gradient-to-r from-[#141414]  to-[#040018] md:h-screen">
             <form
                 onSubmit={loginUser}
                 className="form-control flex justify-center items-center m-48 flex-col w-3/12 h-3/6 md:w-full"
