@@ -1,240 +1,83 @@
 import React from "react";
+import { data } from "../utils/RouletaData";
+export default function RouletaBoard({ bets, setBets, betAmount }) {
+    data.sort((a, b) => a.option - b.option);
+    const dataToMap = data.slice(2, data.length);
 
-import "./Rouleta.css";
-export default function RouletaBoard({ bets, handleBetClick }) {
-    const boardNumbers = [
-        3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 2, 5, 8, 11, 14, 17, 20,
-        23, 26, 29, 32, 35, 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34,
-    ];
+    const handleBet = (option) => {
+        const newBet = { bet: option, amount: betAmount };
+        const existingBetIndex = bets.findIndex((bet) => bet.bet === option);
+        if (existingBetIndex !== -1) {
+            const updatedBets = [...bets];
+            updatedBets[existingBetIndex].amount += betAmount;
+            setBets(updatedBets);
+        } else {
+            setBets([...bets, newBet]);
+        }
+    };
+
+    console.log(bets);
     return (
-        <div className="roulette-bet-board">
-            {Array.from({ length: 3 }).map((_, rowIndex) => (
-                <div className="roulette-bet-row" key={rowIndex}>
-                    {boardNumbers
-                        .slice(rowIndex * 12, (rowIndex + 1) * 12)
-                        .map((number) => {
-                            const bet = bets.find(
-                                (bet) => bet.numbers[0] === number
-                            );
-                            const isRed = [
-                                1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25,
-                                27, 30, 32, 34, 36,
-                            ].includes(number);
-                            const activeClass = bet ? "bet-active" : "";
-                            const colorClass = isRed
-                                ? "bet-number-r"
-                                : "bet-number";
-
-                            return (
-                                <div
-                                    key={number}
-                                    className={`${colorClass} ${activeClass}`}
-                                    onClick={() => handleBetClick(number)}
-                                >
-                                    {number}
-                                    {bet && bet.amount !== 0 && (
-                                        <p className="bet-amount">
-                                            {bet.amount}
-                                        </p>
-                                    )}
-                                </div>
-                            );
-                        })}
-                </div>
-            ))}
-            <div className="roulette-bet-row">
-                <div
-                    className={
-                        bets.some(
-                            (bet) =>
-                                bet.type === "dozen" && bet.numbers.includes(1)
-                        )
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(112)}
-                >
+        <div className="w-full h-52 flex flex-col justify-start items-center my-4">
+            <div className="flex w-fit h-[133px] flex-col-reverse flex-wrap">
+                {dataToMap.map((item, index) => (
+                    <div
+                        key={index}
+                        className="flex w-11 relative h-11 justify-center items-center text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-60 transition-all duration-100"
+                        style={item.style}
+                        onClick={() => handleBet(item.option)}
+                    >
+                        {bets.findIndex((bet) => bet.bet === item.option) !==
+                            -1 && (
+                            <div className="absolute bottom-0 left-0 text-[16px] w-fit flex justify-center items-center h-5  text-[#112A46] bg-yellow-500 rounded-full">
+                                {
+                                    bets[
+                                        bets.findIndex(
+                                            (bet) => bet.bet === item.option
+                                        )
+                                    ].amount
+                                }
+                            </div>
+                        )}
+                        {item.option}
+                    </div>
+                ))}
+            </div>
+            <div className="flex w-fit justify-center items-center h-11">
+                <div className="w-44 h-full text-center text-2xl bg-green-800 border-[1px] border-slate-200 cursor-pointer hover:opacity-60 transition-all duration-100">
                     1st 12
-                    {bets.some(
-                        (bet) => bet.type === "dozen" && bet.numbers.includes(1)
-                    )?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {
-                                bets.find(
-                                    (bet) =>
-                                        bet.type === "dozen" &&
-                                        bet.numbers.includes(1)
-                                )?.amount
-                            }
-                        </p>
-                    )}
                 </div>
-                <div
-                    className={
-                        bets.some(
-                            (bet) =>
-                                bet.type === "dozen" && bet.numbers.includes(13)
-                        )
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(212)}
-                >
+                <div className="w-44 h-full text-center text-2xl bg-green-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
                     2nd 12
-                    {bets.some(
-                        (bet) =>
-                            bet.type === "dozen" && bet.numbers.includes(13)
-                    )?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {
-                                bets.find(
-                                    (bet) =>
-                                        bet.type === "dozen" &&
-                                        bet.numbers.includes(13)
-                                )?.amount
-                            }
-                        </p>
-                    )}
                 </div>
-                <div
-                    className={
-                        bets.some(
-                            (bet) =>
-                                bet.type === "dozen" && bet.numbers.includes(25)
-                        )
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(312)}
-                >
-                    3d 12
-                    {bets.some(
-                        (bet) =>
-                            bet.type === "dozen" && bet.numbers.includes(25)
-                    )?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {
-                                bets.find(
-                                    (bet) =>
-                                        bet.type === "dozen" &&
-                                        bet.numbers.includes(25)
-                                )?.amount
-                            }
-                        </p>
-                    )}
+                <div className="w-44 h-full text-center text-2xl bg-green-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
+                    3rd 12
                 </div>
             </div>
-            <div className="roulette-bet-row">
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "oneto18")
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(118)}
-                >
-                    1 to 18
-                    {bets.some((bet) => bet.type === "oneto18")?.amount !==
-                        0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.type === "oneto18")?.amount}
-                        </p>
-                    )}
+            <div className="flex w-fit justify-center items-center h-11">
+                <div className="w-44 flex justify-center items-center h-full">
+                    <div className="w-1/2 h-full text-center text-2xl bg-green-800 border-[1px] border-slate-200 cursor-pointer hover:opacity-60 transition-all duration-100">
+                        1-18
+                    </div>
+                    <div className="w-1/2 h-full text-center text-2xl bg-gray-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
+                        Even
+                    </div>
                 </div>
-                <div
-                    className={
-                        bets.some((bet) => bet.numbers[0] === 0)
-                            ? "bet-number-g bet-active"
-                            : "bet-number-g"
-                    }
-                    onClick={() => handleBetClick(0)}
-                >
-                    0
-                    {bets.some((bet) => bet.numbers[0] === 0)?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.numbers[0] === 0)?.amount}
-                        </p>
-                    )}
+                <div className="w-44 flex justify-center items-center h-full">
+                    <div className="w-1/2 h-full text-center text-2xl bg-red-600 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
+                        Red
+                    </div>
+                    <div className="w-1/2 h-full text-center text-2xl bg-black border-[1px] border-slate-200 cursor-pointer hover:opacity-60 transition-all duration-100">
+                        Black
+                    </div>
                 </div>
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "even")
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(-4)}
-                >
-                    Even
-                    {bets.some((bet) => bet.type === "even")?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.type === "even")?.amount}
-                        </p>
-                    )}
-                </div>
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "red")
-                            ? "bet-number-r bet-active"
-                            : "bet-number-r"
-                    }
-                    onClick={() => handleBetClick(-1)}
-                >
-                    Red
-                    {bets.some((bet) => bet.type === "red")?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.type === "red")?.amount}
-                        </p>
-                    )}
-                </div>
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "black")
-                            ? "bet-number bet-active"
-                            : "bet-number"
-                    }
-                    onClick={() => handleBetClick(-2)}
-                >
-                    Black
-                    {bets.some((bet) => bet.type === "black")?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.type === "black")?.amount}
-                        </p>
-                    )}
-                </div>
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "odd")
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(-3)}
-                >
-                    Odd
-                    {bets.some((bet) => bet.type === "odd")?.amount !== 0 && (
-                        <p className="bet-amount">
-                            {bets.find((bet) => bet.type === "odd")?.amount}
-                        </p>
-                    )}
-                </div>
-                <div className="bet-number-g">00</div>
-                <div
-                    className={
-                        bets.some((bet) => bet.type === "nineteento36")
-                            ? "bet-number-categ bet-active"
-                            : "bet-number-categ"
-                    }
-                    onClick={() => handleBetClick(1936)}
-                >
-                    19 to 36
-                    {bets.some((bet) => bet.type === "nineteento36")?.amount !==
-                        0 && (
-                        <p className="bet-amount">
-                            {
-                                bets.find((bet) => bet.type === "nineteento36")
-                                    ?.amount
-                            }
-                        </p>
-                    )}
+                <div className="w-44 flex justify-center items-center h-full">
+                    <div className="w-1/2 h-full text-center text-2xl bg-gray-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
+                        Odd
+                    </div>
+                    <div className="w-1/2 h-full text-center text-2xl bg-green-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-60 transition-all duration-100">
+                        19-36
+                    </div>
                 </div>
             </div>
         </div>

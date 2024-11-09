@@ -26,23 +26,32 @@ export default function Vroomvolts() {
     }, []);
 
     return (
-        <div className="flex justify-evenly items-center w-full h-screen relative md:flex-col md:justify-center md:h-fit">
+        <div className="flex flex-col justify-start items-center w-screen h-screen relative md:flex-col md:justify-center md:h-fit ">
             <TopNavigation />
 
-            <div className="mt-8 absolute top-8 left-12 h-14  flex justify-start items-center bg-[#351748] py-2 px-3 rounded-3xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:top-2 md:mt-0 md:left-2 md:fixed z-10">
+            <div className="mt-8 absolute top-8 left-12 h-14 overflow-x-hidden flex justify-start items-center bg-[#351748] py-2 px-3 rounded-3xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:top-2 md:mt-0 md:left-2 md:fixed z-10">
                 <img src={coin} className="w-10 mr-4"></img>
                 <h1 className="text-4xl m-0 p-0 text-center">
                     <AnimatedNumber n={vroomvolts} />
                 </h1>
             </div>
-            <LuckyWheel vroomvolts={vroomvolts} setVroomvolts={setVroomvolts} />
-            <CardImagesProvider>
-                <BlackJack
+            <div className="flex w-full h-full justify-evenly items-center">
+                <LuckyWheel
                     vroomvolts={vroomvolts}
                     setVroomvolts={setVroomvolts}
                 />
-            </CardImagesProvider>
-            <Rouleta vroomvolts={vroomvolts} setVroomvolts={setVroomvolts} />
+
+                <Rouleta
+                    vroomvolts={vroomvolts}
+                    setVroomvolts={setVroomvolts}
+                />
+                <CardImagesProvider>
+                    <BlackJack
+                        vroomvolts={vroomvolts}
+                        setVroomvolts={setVroomvolts}
+                    />
+                </CardImagesProvider>
+            </div>
         </div>
     );
 }

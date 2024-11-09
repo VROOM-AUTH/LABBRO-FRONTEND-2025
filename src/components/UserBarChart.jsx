@@ -61,7 +61,7 @@ export default function UserBarChart({ data }) {
         );
     };
     return (
-        <div className="flex justify-start flex-col items-center h-96 w-full md:w-11/12 md:mt-4  bg-[#190C34] rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+        <div className="flex justify-start flex-col items-center h-96 w-[600px] mx-4 md:w-11/12 md:mt-4  bg-[#190C34] rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
             <div className="text-2xl py-1 bg-[#473663] rounded-t-2xl w-full text-center">
                 User's time
             </div>
