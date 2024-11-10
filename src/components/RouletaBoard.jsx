@@ -205,7 +205,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
             </div>
             <div className="md:flex">
                 <div
-                    className="flex justify-center items-center h-28 absolute top-0 left-4 md:relative md:top-0 md:left-0 md:w-20 md:h-8 bg-[#148001] w-10 text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
+                    className="flex justify-center items-center h-28 absolute top-0 left-0 md:relative md:top-0 md:left-0 md:w-20 md:h-8 bg-[#148001] w-10 text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("zero")}
                 >
                     {bets.findIndex((bet) => bet.bet === "zero") !== -1 && (
@@ -220,7 +220,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     0
                 </div>
                 <div
-                    className="flex justify-center items-center h-24 absolute top-28 md:relative md:top-0 md:w-20 md:h-8 left-4 md:left-0 bg-[#148001] w-10 text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100 "
+                    className="flex justify-center items-center h-24 absolute top-28 md:relative md:top-0 md:w-20 md:h-8 left-0 md:left-0 bg-[#148001] w-10 text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100 "
                     onClick={() => handleBet("double_zero")}
                 >
                     {bets.findIndex((bet) => bet.bet === "double_zero") !==
