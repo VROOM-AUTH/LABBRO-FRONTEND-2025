@@ -30,7 +30,7 @@ export default function BetInput({ betAmount, setBetAmount }) {
                 </svg>
             </button>
             <input
-                type="text"
+                type="number"
                 id="quantity-input"
                 data-input-counter
                 data-input-counter-min="1"
@@ -38,7 +38,7 @@ export default function BetInput({ betAmount, setBetAmount }) {
                 className="w-24 text-2xl h-8 px-5 font-extrabold text-center bg-gray-950"
                 placeholder="999"
                 value={betAmount}
-                onChange={(e) => setBetAmount(e.target.value)}
+                onChange={(e) => setBetAmount(parseInt(e.target.value))}
                 required
             />
             <button
