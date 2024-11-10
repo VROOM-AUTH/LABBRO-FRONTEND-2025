@@ -19,11 +19,11 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
 
     return (
         <div className="w-full h-52 flex flex-col justify-start items-center my-4 relative">
-            <div className="flex w-fit h-[133px] md:h-[100px] flex-col-reverse flex-wrap">
+            <div className="flex w-10/12 justify-center items-center h-[133px] md:h-[100px] flex-col-reverse flex-wrap md:w-full">
                 {dataToMap.map((item, index) => (
                     <div
                         key={index}
-                        className="flex w-11 relative h-11 md:w-7 md:h-7 md:text-xl justify-center items-center text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
+                        className="flex w-1/12 relative h-11 md:w-1/12 md:h-7 md:text-xl justify-center items-center text-white text-2xl font-bold border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
                         style={item.style}
                         onClick={() => handleBet(item.option)}
                     >
@@ -43,9 +43,9 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     </div>
                 ))}
             </div>
-            <div className="flex w-fit justify-center items-center h-11 ">
+            <div className="flex w-10/12 justify-center items-center h-11 md:w-full ">
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 border-[1px] flex items-center justify-center border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
+                    className="w-1/3 md:w-28 h-full relative text-center text-2xl bg-green-800 border-[1px] flex items-center justify-center border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("1st12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "1st12") !== -1 && (
@@ -60,7 +60,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     1st 12
                 </div>
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
+                    className="w-1/3 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("2nd12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "2nd12") !== -1 && (
@@ -75,7 +75,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     2nd 12
                 </div>
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
+                    className="w-1/3 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("3rd12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "3rd12") !== -1 && (
@@ -90,8 +90,8 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     3rd 12
                 </div>
             </div>
-            <div className="flex w-fit justify-center items-center h-11">
-                <div className="w-44 md:w-28 flex justify-center items-center h-full">
+            <div className="flex w-10/12 justify-center items-center h-11 md:w-full">
+                <div className="w-1/3 md:w-28 flex justify-center items-center h-full">
                     <div
                         className="w-1/2 h-full relative md:text-xl text-center text-2xl bg-green-800 flex items-center justify-center border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
                         onClick={() => handleBet("1to18")}
@@ -128,7 +128,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                         Even
                     </div>
                 </div>
-                <div className="w-44 md:w-28 flex justify-center items-center h-full">
+                <div className="w-1/3 md:w-28 flex justify-center items-center h-full">
                     <div
                         className="w-1/2 h-full relative text-center md:text-xl text-2xl bg-red-600 flex items-center justify-center cursor-pointer border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                         onClick={() => handleBet("red")}
@@ -165,7 +165,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                         Black
                     </div>
                 </div>
-                <div className="w-44 md:w-28 flex justify-center items-center h-full">
+                <div className="w-1/3 md:w-28 flex justify-center items-center h-full">
                     <div
                         className="w-1/2 h-full text-center relative md:text-xl text-2xl flex items-center justify-center bg-gray-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                         onClick={() => handleBet("odd")}
