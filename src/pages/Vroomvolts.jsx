@@ -35,7 +35,7 @@ export default function Vroomvolts() {
                     <AnimatedNumber n={vroomvolts} />
                 </h1>
             </div>
-            <div className="flex w-full h-full justify-evenly items-center">
+            <div className="flex w-full h-full justify-evenly items-center md:flex-col md:justify-center md:h-fit">
                 <LuckyWheel
                     vroomvolts={vroomvolts}
                     setVroomvolts={setVroomvolts}
