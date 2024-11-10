@@ -45,7 +45,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
             </div>
             <div className="flex w-fit justify-center items-center h-11 ">
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 border-[1px] border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
+                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 border-[1px] flex items-center justify-center border-slate-200 cursor-pointer hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("1st12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "1st12") !== -1 && (
@@ -60,7 +60,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     1st 12
                 </div>
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
+                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("2nd12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "2nd12") !== -1 && (
@@ -75,7 +75,7 @@ export default function RouletaBoard({ bets, setBets, betAmount }) {
                     2nd 12
                 </div>
                 <div
-                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
+                    className="w-44 md:w-28 h-full relative text-center text-2xl bg-green-800 cursor-pointer flex items-center justify-center border-[1px] border-slate-200 hover:opacity-80 transition-all duration-100"
                     onClick={() => handleBet("3rd12")}
                 >
                     {bets.findIndex((bet) => bet.bet === "3rd12") !== -1 && (

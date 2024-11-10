@@ -46,6 +46,11 @@ export default function Rouleta({ vroomvolts, setVroomvolts }) {
         setDisableButton(true);
         let totalBet = 0;
         for (const bet of bets) {
+            if (bet.amount < 0) {
+                setMessage("You can't bet negative amounts!");
+                setDisableButton(false);
+                return;
+            }
             totalBet += bet.amount;
         }
         if (totalBet == 0) {
@@ -75,7 +80,6 @@ export default function Rouleta({ vroomvolts, setVroomvolts }) {
         setMustSpin(true);
     };
 
-    console.log(bets);
     return (
         <div className="flex justify-center items-center flex-col w-1/3 h-fit mt-8 rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:w-11/12 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAACdJREFUGFclirENAAAMguD/o220ixpQMYgEIKi2wQIKJojG5swePw9HKQkOQbvAHAAAAABJRU5ErkJggg==')] bg-repeat bg-[#7a2222]">
             <div className="mt-4 mb-4 flex justify-center w-11/12 relative">
