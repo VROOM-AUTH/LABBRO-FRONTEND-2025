@@ -28,10 +28,10 @@ export default function RecentActivity({ users }) {
         };
     }, []);
 
-    const slicedVActivity = recentActivity?.slice(0, 6);
+    const slicedVActivity = recentActivity?.slice(0, 5);
     return (
-        <div className="flex flex-col justify-start items-center w-full md:pb-4 md:mt-4 mt-8 bg-[#190C34] rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] overflow-y-auto overflow-x-hidden">
-            <h1 className="text-2xl w-full text-center bg-[#473663] rounded-t-lg py-1 flex items-center justify-center">
+        <div className="flex flex-col justify-start items-center w-fit mx-2 h-fit bg-[#190C34] rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] overflow-y-auto overflow-x-hidden md:w-full">
+            <h1 className="text-2xl w-full text-center bg-[#473663] rounded-t-lg py-1 px-2 flex items-center justify-center">
                 Lab Activity
             </h1>
 
@@ -39,7 +39,7 @@ export default function RecentActivity({ users }) {
                 users &&
                 slicedVActivity.map((entry, index) => (
                     <div
-                        className={`flex justify-between items-center my-2 w-52 h-14 px-2 rounded-xl cursor-pointer transition-all duration-100 hover:scale-110 md:w-3/4 ${
+                        className={`flex justify-between items-center my-2 w-11/12 h-14 px-2 rounded-xl cursor-pointer transition-all duration-100 hover:scale-110 md:w-full ${
                             entry.status ? "bg-[#1C875D]" : "bg-[#9d3c55]"
                         }`}
                         style={{ opacity: (100 - index * 7) / 100 }} // dynamically setting opacity

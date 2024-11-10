@@ -29,15 +29,15 @@ export default function RecentVroomvolts({ users }) {
     const slicedVroomvolts = recentVroomvolts?.slice(0, 5);
 
     return (
-        <div className="flex justify-center items-center w-full flex-col bg-[#190C34] rounded-xl mt-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+        <div className="flex flex-col justify-start items-center w-fit mx-2 h-fit bg-[#190C34] rounded-xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] overflow-y-auto overflow-x-hidden md:w-full">
             <h1 className="text-2xl w-full text-center bg-[#473663] rounded-t-lg py-1 flex items-center justify-center">
-                Vroomvolts Trend
+                Vroomvolts
             </h1>
             {slicedVroomvolts ? (
-                <div className="flex flex-col justify-start h-fit items-center w-fit md:w-3/5 md:mb-8">
+                <div className="flex flex-col justify-start h-full items-center w-fit md:w-full">
                     {slicedVroomvolts.map((entry, index) => (
                         <div
-                            className="flex justify-between items-center my-2 w-52 h-14 px-2 rounded-xl cursor-pointer transition-all duration-100 hover:scale-110 md:w-full bg-[#f7c10d] text-black "
+                            className="flex justify-between items-center my-2 w-11/12 h-14 px-2 rounded-xl cursor-pointer transition-all duration-100 hover:scale-110 md:w-full bg-[#f7c10d] text-black "
                             style={{ opacity: (100 - index * 7) / 100 }} // dynamically setting opacity
                             key={index}
                             onClick={() =>

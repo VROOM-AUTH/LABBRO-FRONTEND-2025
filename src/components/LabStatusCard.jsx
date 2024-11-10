@@ -43,7 +43,7 @@ export default function LabStatusCard({ users }) {
         labStatus?.currentMembers?.includes(user.username)
     );
     return (
-        <div className="flex rounded-lg justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 m-2  md:w-11/12 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+        <div className="flex rounded-lg justify-evenly items-center flex-col bg-[#190c34] w-64 h-fit min-h-52 md:w-11/12 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
             {labStatus ? (
                 <>
                     <h1 className="text-2xl w-full p-2 text-center">

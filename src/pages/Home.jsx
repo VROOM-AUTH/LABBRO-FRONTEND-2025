@@ -57,33 +57,33 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="flex justify-evenly items-center w-full h-full md:flex-col md:justify-center">
+        <div className="flex flex-col pt-8 justify-center items-center w-full h-full md:flex-col md:justify-center">
             <TopNavigation />
-            <div className="flex flex-col justify-start h-5/6 md:justify-center md:items-center md:w-full w-2/6 ">
-                <div className="flex justify-between items-start md:flex-col md:w-11/12 md:justify-center md:items-center">
-                    <UserStatusCard
-                        users={users}
-                        vroomvolts={vroomvolts}
-                        labSessions={labSessions}
-                        labStatus={labStatus}
-                    />
-                    <LabStatusCard users={users} />
+            <div className="flex w-11/12 justify-center items-center md:flex-col ">
+                <div className="flex w-fit flex-col h-fit justify-center items-center">
+                    <div className="flex w-fit justify-between items-center md:flex-col">
+                        <UserStatusCard
+                            users={users}
+                            vroomvolts={vroomvolts}
+                            labSessions={labSessions}
+                            labStatus={labStatus}
+                        />
+                        <LabStatusCard users={users} />
+                    </div>
+                    <LinksToPlatformsCard />
                 </div>
-                <VroomvoltGamesCard />
-                <SmartLabCard />
-                <LinksToPlatformsCard />
-            </div>
-            <div className="flex flex-col justify-between h-5/6 items-center w-2/5 md:w-full">
                 <UserBarChart data={graphData} />
-                <div className="flex justify-between items-center w-full md:flex-col md:justify-center md:w-11/12">
-                    <UserList users={users} />
-                    <LabTimeGraph labDurations={labDurations} />
+            </div>
+            <div className="flex w-11/12 justify-center items-center mt-4 md:flex-col md:m-0">
+                {/* <VroomvoltGamesCard /> */}
+                <UserList users={users} />
+                <LabTimeGraph labDurations={labDurations} />
+                <div className="flex md:w-full md:h-full justify-start items-center md:mb-16">
+                    <RecentActivity users={users} />
+                    <RecentVroomvolts users={users} />
                 </div>
             </div>
-            <div className="flex flex-col h-full w-60 justify-start items-center md:w-11/12 md:h-fit md:pb-8">
-                <RecentActivity users={users} />
-                <RecentVroomvolts users={users} />
-            </div>
+            {/* <SmartLabCard /> */}
         </div>
     );
 }
