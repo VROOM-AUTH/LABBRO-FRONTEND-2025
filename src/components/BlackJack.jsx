@@ -46,6 +46,10 @@ export default function BlackJack({ vroomvolts, setVroomvolts }) {
                     setWonVroomvolts(response.data.wonVroomvolts);
                     setVroomvolts((prev) => prev + response.data.wonVroomvolts);
                 }
+                if (response.data.message !== undefined) {
+                    console.log(response.data.message);
+                    setErrorMessage(response.data.message);
+                }
             }
         });
     };
