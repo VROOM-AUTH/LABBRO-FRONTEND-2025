@@ -25,6 +25,7 @@ export default function Marathon() {
           return {
             username: user.username,
             vroomvolts: entry.value,
+            image: user.image,
           };
         })
       );
@@ -40,9 +41,11 @@ export default function Marathon() {
         .sort((a, b) => b.total_time - a.total_time)
         .slice(0, 3)
         .map((user) => {
+          console.log(user.image);
           return {
             username: user.username,
             hours: user.total_time,
+            image: user.image,
           };
         });
       console.log(topThree);
@@ -54,7 +57,7 @@ export default function Marathon() {
   };
 
   const renderTable = (data, title, key) => (
-    <div className="flex flex-col justify-start items-center h-80 w-[600px] mx-4 md:w-11/12 md:mt-4 bg-[#190C34] rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+    <div className="flex flex-col justify-start items-center h-100 w-[600px] mx-4 md:w-11/12 md:mt-4 bg-[#190C34] rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
       <div className="text-2xl py-1 bg-[#473663] rounded-t-2xl w-full text-center">
         {title}
       </div>
@@ -72,6 +75,13 @@ export default function Marathon() {
           >
             <div className="flex items-center space-x-4">
               <span className="text-xl font-bold">{index + 1}.</span>
+
+              <span className="w-12 h-12 rounded-full overflow-hidden">
+                <img
+                  src={entry.image}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              </span>
               <span className="text-lg">{entry.username}</span>
             </div>
             <span className="text-lg font-semibold">
@@ -90,12 +100,12 @@ export default function Marathon() {
       {/* Switch Component */}
       <div className="flex items-center justify-center my-4 pt-20">
         <div className="relative inline-flex items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-full">
-          <div className="w-48 h-12 bg-purple-500 rounded-full relative flex items-center">
+          <div className="w-56 h-12 bg-purple-500 rounded-full relative flex items-center">
             {/* VroomVolts Option */}
             <span
               className={`w-1/2 text-center z-10 ${
                 selectedOption === "vroomvolts"
-                  ? "text-white"
+                  ? "text-white font-bold"
                   : "text-gray-300 cursor-pointer"
               }`}
               onClick={() => {
@@ -110,7 +120,7 @@ export default function Marathon() {
             <span
               className={`w-1/2 text-center z-10 ${
                 selectedOption === "hours"
-                  ? "text-white"
+                  ? "text-white font-bold"
                   : "text-gray-300 cursor-pointer"
               }`}
               onClick={() => {
