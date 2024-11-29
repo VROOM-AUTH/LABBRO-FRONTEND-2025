@@ -2,7 +2,7 @@ import React from "react";
 import { FaMedal } from "react-icons/fa";
 import { FcClock } from "react-icons/fc";
 import coin from "../assets/coin.png"; // Adjust the import path as needed
-
+import secondsFormat from "../utils/secondsFormat";
 const RankTable = ({ data, title, dataKey }) => {
   const medalColors = ["text-yellow-500", "text-gray-400", "text-orange-500"];
 
@@ -47,7 +47,7 @@ const RankTable = ({ data, title, dataKey }) => {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-lg md:text-sm text-right font-semibold">
-                {entry[dataKey]}
+                {secondsFormat(entry[dataKey])}
               </span>
               {dataKey === "vroomvolts" ? (
                 <img className="w-8 h-8" src={coin} alt="Coin" />
