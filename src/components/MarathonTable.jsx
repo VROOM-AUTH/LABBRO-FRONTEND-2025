@@ -47,7 +47,7 @@ const RankTable = ({ data, title, dataKey }) => {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-lg md:text-sm text-right font-semibold">
-                {secondsFormat(entry[dataKey])}
+                {dataKey==="vroomvolts"? entry[dataKey]:secondsFormat(entry[dataKey])}
               </span>
               {dataKey === "vroomvolts" ? (
                 <img className="w-8 h-8" src={coin} alt="Coin" />
