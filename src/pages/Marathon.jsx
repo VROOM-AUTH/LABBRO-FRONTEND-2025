@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import TopNavigation from "../components/TopNavigation";
+import React, { useState, useEffect } from "react";
 import useAxios from "../utils/useAxios";
+import TopNavigation from "../components/TopNavigation";
+import RankTable from "../components/MarathonTable";
 import SwitchComponent from "../components/Switch";
-import { rankTable } from "../components/MarathonTable";
 
 export default function Marathon() {
   const api = useAxios();
@@ -77,14 +77,13 @@ export default function Marathon() {
   };
 
   return (
-    <div className="flex flex-col items-center  justify-center w-full min-h-screen text-white">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen text-white">
       <TopNavigation />
-
-      <div className="relative w-full flex justify-center items-center  pb-5">
+      <div className="relative w-full flex justify-center items-center pb-5">
         {/* Container for Switch and Table */}
         <div className="w-[600px] md:w-11/12 relative">
           {/* Switch Component Positioned Above */}
-          <div className="absolute top-3 -right-1.5 md:top-6 md:right-7">
+          <div className="absolute top-3 -right-1.5 md:top-6 md:right-8">
             <SwitchComponent
               options={options}
               selectedOption={selectedOption}
@@ -95,11 +94,16 @@ export default function Marathon() {
 
           {/* Render Table */}
           {selectedOption === "vroomvolts" &&
-            threeFirstVroomVolts.length > 0 &&
-            rankTable(threeFirstVroomVolts, "Top 3 VroomVolts", "vroomvolts")}
-          {selectedOption === "hours" &&
-            threeFirstHours.length > 0 &&
-            rankTable(threeFirstHours, "Top 3 Hours", "hours")}
+            threeFirstVroomVolts.length > 0 && (
+              <RankTable
+                data={threeFirstVroomVolts}
+                title="Top 3 "
+                dataKey="vroomvolts"
+              />
+            )}
+          {selectedOption === "hours" && threeFirstHours.length > 0 && (
+            <RankTable data={threeFirstHours} title="Top 3 " dataKey="hours" />
+          )}
         </div>
       </div>
     </div>
