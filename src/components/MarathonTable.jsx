@@ -2,7 +2,7 @@ import React from "react";
 
 export const rankTable = (data, title, key) => (
   <div className="flex flex-col justify-start items-center  w-[600px] mx-4 md:w-11/12 md:mt-4 bg-[#190C34] rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
-    <div className="text-2xl py-3 bg-[#473663] rounded-t-2xl w-full text-center">
+    <div className="text-2xl py-3 md:py-6 bg-[#473663] rounded-t-2xl w-full text-center">
       {title}
     </div>
     <ul className="w-full p-4 space-y-4">
@@ -28,7 +28,7 @@ export const rankTable = (data, title, key) => (
             </span>
             <span className="text-lg">{entry.username}</span>
           </div>
-          <span className="text-lg text right font-semibold">
+          <span className="text-lg  md:text-sm text right font-semibold">
             {entry[key]} {key === "vroomvolts" ? "VroomVolts" : "Hours"}
           </span>
         </li>

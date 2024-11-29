@@ -84,7 +84,7 @@ export default function Marathon() {
         {/* Container for Switch and Table */}
         <div className="w-[600px] md:w-11/12 relative">
           {/* Switch Component Positioned Above */}
-          <div className="absolute top-3 -right-1.5">
+          <div className="absolute top-3 -right-1.5 md:top-6 md:right-7">
             <SwitchComponent
               options={options}
               selectedOption={selectedOption}
