@@ -1,54 +1,60 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrivateRoutes from "./utils/PrivateRoutes";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import { AuthProvider } from "./context/AuthContext";
-import Profile from "./pages/Profile";
-import StaffRoutes from "./utils/StaffRoutes";
-import Vroomvolts from "./pages/Vroomvolts";
-import SmartLab from "./pages/SmartLab";
-import Marathon from "./pages/Marathon";
-import Admin from "./pages/Admin";
-import ErrorPage from "./pages/ErrorPage";
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PrivateRoutes from './utils/PrivateRoutes';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import { AuthProvider } from './context/AuthContext';
+import Profile from './pages/Profile';
+import StaffRoutes from './utils/StaffRoutes';
+import Vroomvolts from './pages/Vroomvolts';
+import SmartLab from './pages/SmartLab';
+import Marathon from './pages/Marathon';
+import Admin from './pages/Admin';
+import ErrorPage from './pages/ErrorPage';
+import Calendar from './pages/Calendar';
 
 function App() {
     return (
-        <div className="App">
+        <div className='App'>
             <Router>
                 <AuthProvider>
                     <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="*" element={<ErrorPage />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='*' element={<ErrorPage />} />
                         {/* All other routes will have UsersProvider */}
                         <Route element={<PrivateRoutes />}>
                             {/* Private routes only for logged in users */}
-                            <Route path="/" element={<Home />} exact />
+                            <Route path='/' element={<Home />} exact />
                             <Route
-                                path="/vroomvolts"
+                                path='/calendar'
+                                element={<Calendar />}
+                                exact
+                            />
+                            <Route
+                                path='/vroomvolts'
                                 element={<Vroomvolts />}
                                 exact
                             />
 
                             <Route
-                                path="/smartlab"
+                                path='/smartlab'
                                 element={<SmartLab />}
                                 exact
                             />
                             <Route
-                                path="/marathon"
+                                path='/marathon'
                                 element={<Marathon />}
                                 exact
                             />
                             <Route
-                                path="/profile/:id"
+                                path='/profile/:id'
                                 element={<Profile />}
                                 exact
                             />
                             <Route element={<StaffRoutes />}>
                                 {/* Staff routes only for is_staff users */}
                                 <Route
-                                    path="/admin"
+                                    path='/admin'
                                     element={<Admin />}
                                     exact
                                 />
