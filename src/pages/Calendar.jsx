@@ -10,7 +10,7 @@ const Calendar = () => {
             </div>
             <div className='p-4 w-1000'>
                 <iframe
-                    src='https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FAthens&showPrint=0&title=Vroom&showTz=0&src=dDZoZ2RtZmRlbHBuOTFpbWo3MHA5ZHFjdWdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%238E24AA://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FAthens&showPrint=0&title=Vroom&src=dDZoZ2RtZmRlbHBuOTFpbWo3MHA5ZHFjdWdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%238E24AA://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FAthens&showPrint=0&title=Vroom&src=YWdpcy5udGFuQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=dDZoZ2RtZmRlbHBuOTFpbWo3MHA5ZHFjdWdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZWwuZ3JlZWsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23616161&color=%2333B679&color=%238E24AA&color=%23009688'
+                    src='https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FAthens&showPrint=0&title=Vroom&showTz=0&src=dDZoZ2RtZmRlbHBuOTFpbWo3MHA5ZHFjdWdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%238E24AA'
                     style={{
                         border: 0,
                         borderBottomLeftRadius: '10px',
